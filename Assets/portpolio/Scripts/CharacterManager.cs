@@ -93,6 +93,7 @@ public class CharacterManager : MonoBehaviour
     void Start()
     {
         pState = GetComponent<PlayerStateList>();
+        pState.alive = true;
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
@@ -111,13 +112,17 @@ public class CharacterManager : MonoBehaviour
         }
         else
         {
-            GetInputs();
-            UpdateJumpVariables();
-            Move();
-            Jump();
-            Flip();
-            Attack();
-            ShotAttack();
+            if (pState.alive) 
+            {
+                GetInputs();
+                UpdateJumpVariables();
+                Move();
+                Jump();
+                Flip();
+                Attack();
+                ShotAttack();
+            }
+            
         }
 
     }
@@ -340,10 +345,12 @@ public class CharacterManager : MonoBehaviour
             {
                 hpBar.value = 0;
                 // player dead
+                pState.alive = false;
+                anim.SetTrigger("Death");
 
                 sm.GetComponent<StageManager>().ShowGameOverWindow();
 
-                Destroy(gameObject);              
+                //Destroy(gameObject);              
                 
             }
             else
@@ -354,7 +361,8 @@ public class CharacterManager : MonoBehaviour
                   x = 1;
                 else
                   x = -1;
-
+                
+                anim.SetTrigger("TakeDamage");
                 StartCoroutine(Knockback(x));
                 StartCoroutine(Invulnerable());
                 StartCoroutine(AlphaBlink());
@@ -407,4 +415,5 @@ public class CharacterManager : MonoBehaviour
         yield return new WaitForSeconds(1f);
         isHurt = false;
     }
+
 }

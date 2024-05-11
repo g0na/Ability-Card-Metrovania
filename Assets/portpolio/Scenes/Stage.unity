@@ -5031,13 +5031,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 234117413342715729, guid: fb9cb92b327e4ca4aa726f6d2a9640a3, type: 3}
+      propertyPath: m_Interpolate
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 234117413342715729, guid: fb9cb92b327e4ca4aa726f6d2a9640a3, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1585032444808029501, guid: fb9cb92b327e4ca4aa726f6d2a9640a3, type: 3}
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 2849674734135789790, guid: fb9cb92b327e4ca4aa726f6d2a9640a3, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -10.567866
+      value: -10.56787
       objectReference: {fileID: 0}
     - target: {fileID: 2849674734135789790, guid: fb9cb92b327e4ca4aa726f6d2a9640a3, type: 3}
       propertyPath: m_LocalPosition.y
@@ -5670,6 +5678,10 @@ PrefabInstance:
     - target: {fileID: 5745353293993133129, guid: 0babe94b32685f947bc13f50ccab01c1, type: 3}
       propertyPath: m_Layer
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6565911887230055203, guid: 0babe94b32685f947bc13f50ccab01c1, type: 3}
+      propertyPath: enemyDamage
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 8211822469877923230, guid: 0babe94b32685f947bc13f50ccab01c1, type: 3}
       propertyPath: m_LocalPosition.x

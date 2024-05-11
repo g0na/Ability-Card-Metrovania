@@ -6,5 +6,6 @@ public class PlayerStateList : MonoBehaviour
 {
     public bool jumping;
     public bool recoilingX, recoilingY;
-    public bool lookingRight;
+    public bool lookingRight; 
+    public bool alive; 
 }

@@ -5,7 +5,13 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/SampleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/portpolio/Scenes/Main.unity
+    guid: 6e6e7237544cfe1468c210fa6c08b45d
+  - enabled: 1
+    path: Assets/portpolio/Scenes/Stage.unity
+    guid: 930a228225bae6b4c82ab943ad3b2e15
   m_configObjects: {}
