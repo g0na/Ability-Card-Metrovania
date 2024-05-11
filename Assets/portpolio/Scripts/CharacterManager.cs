@@ -76,7 +76,8 @@ public class CharacterManager : MonoBehaviour
     public static CharacterManager Instance;
 
 
-    GameObject sm; 
+    GameObject sm;
+    GameObject gm;
 
     private void Awake()
     {
@@ -103,6 +104,7 @@ public class CharacterManager : MonoBehaviour
         whatIsGround = LayerMask.GetMask("Ground");
 
         sm = GameObject.Find("StageManager");
+        gm = GameObject.Find("GameManager");
     }
 
     // Update is called once per frame
@@ -326,10 +328,14 @@ public class CharacterManager : MonoBehaviour
         {
             if (Input.GetKey(KeyCode.Z))
             {
-                Debug.Log("shot!");
-                bullets = Instantiate(bullet, bulletPos.position, transform.rotation);
-                bullets.GetComponent<bullet>().dir = pState.lookingRight;
-                curTime = bulletCooltime;
+                if(gm.GetComponent<GameManager>().activeRangedAttack)
+                {
+                    Debug.Log("shot!");
+                    bullets = Instantiate(bullet, bulletPos.position, transform.rotation);
+                    bullets.GetComponent<bullet>().dir = pState.lookingRight;
+                    curTime = bulletCooltime;
+                }
+                
             }
             
         }
