@@ -9,8 +9,9 @@ public class CharacterManager : MonoBehaviour
 {
     [Header("Horizontal Movement Settings")]
     [SerializeField] private float walkSpeed = 1;
+    [SerializeField] private float dashCooldown;
     
-
+    
     [Header("Vertical Movement Settings")]
     [SerializeField] private float jumpForce = 45;
     private float gravity;  
@@ -98,6 +99,7 @@ public class CharacterManager : MonoBehaviour
         sr = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
         // hpBar.value = (float)curHp / (float)hp;
+        gravity = rb.gravityScale;
         whatIsGround = LayerMask.GetMask("Ground");
 
         sm = GameObject.Find("StageManager");
@@ -112,7 +114,7 @@ public class CharacterManager : MonoBehaviour
         }
         else
         {
-            if (pState.alive) 
+            if (pState.alive)
             {
                 GetInputs();
                 UpdateJumpVariables();
@@ -349,8 +351,8 @@ public class CharacterManager : MonoBehaviour
                 anim.SetTrigger("Death");
 
                 sm.GetComponent<StageManager>().ShowGameOverWindow();
-
-                //Destroy(gameObject);              
+                
+                Destroy(gameObject, 1);
                 
             }
             else

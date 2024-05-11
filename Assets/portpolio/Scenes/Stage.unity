@@ -5049,7 +5049,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2849674734135789790, guid: fb9cb92b327e4ca4aa726f6d2a9640a3, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.19485068
+      value: -2.942
       objectReference: {fileID: 0}
     - target: {fileID: 2849674734135789790, guid: fb9cb92b327e4ca4aa726f6d2a9640a3, type: 3}
       propertyPath: m_LocalPosition.z
@@ -5108,6 +5108,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 6287960660498431014, guid: f57f64443d1f4b44e86f3c06b1bb2b90, type: 3}
     - target: {fileID: 6014337500652624191, guid: fb9cb92b327e4ca4aa726f6d2a9640a3, type: 3}
+      propertyPath: dashTime
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6014337500652624191, guid: fb9cb92b327e4ca4aa726f6d2a9640a3, type: 3}
       propertyPath: endPoint
       value: 
       objectReference: {fileID: 2536808}
@@ -5116,9 +5120,21 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1024925653}
     - target: {fileID: 6014337500652624191, guid: fb9cb92b327e4ca4aa726f6d2a9640a3, type: 3}
+      propertyPath: dashSpeed
+      value: 70
+      objectReference: {fileID: 0}
+    - target: {fileID: 6014337500652624191, guid: fb9cb92b327e4ca4aa726f6d2a9640a3, type: 3}
       propertyPath: startPoint
       value: 
       objectReference: {fileID: 588877864}
+    - target: {fileID: 6014337500652624191, guid: fb9cb92b327e4ca4aa726f6d2a9640a3, type: 3}
+      propertyPath: defaultTime
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6014337500652624191, guid: fb9cb92b327e4ca4aa726f6d2a9640a3, type: 3}
+      propertyPath: dashCooldown
+      value: 0.35
+      objectReference: {fileID: 0}
     - target: {fileID: 6014337500652624191, guid: fb9cb92b327e4ca4aa726f6d2a9640a3, type: 3}
       propertyPath: meleeCooltime
       value: 0.7
@@ -5681,7 +5697,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6565911887230055203, guid: 0babe94b32685f947bc13f50ccab01c1, type: 3}
       propertyPath: enemyDamage
-      value: 20
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8211822469877923230, guid: 0babe94b32685f947bc13f50ccab01c1, type: 3}
       propertyPath: m_LocalPosition.x
