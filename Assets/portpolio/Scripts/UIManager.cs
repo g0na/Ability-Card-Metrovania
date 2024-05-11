@@ -9,11 +9,14 @@ public class UIManager : MonoBehaviour
 
 
     GameObject sm;
+    GameObject gm;
 
     // Start is called before the first frame update
     void Start()
     {
         sm = GameObject.Find("StageManager");
+        gm = GameObject.Find("GameManager");
+        // cardSelectWindow = GameObject.Find("Card Select Window");
     }
 
     // Update is called once per frame
@@ -26,9 +29,7 @@ public class UIManager : MonoBehaviour
 
     public void OnClickStartButton()
     {
-        Debug.Log("onclickButton");
-        SceneManager.LoadScene("Stage");
-        
+        gm.GetComponent<GameManager>().cardSelectWindow.SetActive(true);
     }
 
     public void OnClickExitButton()
@@ -55,6 +56,18 @@ public class UIManager : MonoBehaviour
     public void OnClicMainButton()
     {
         SceneManager.LoadScene("Main");
+    }
+
+
+    public void OnClickCardSelectCloseButton()
+    {
+        gm.GetComponent<GameManager>().cardSelectWindow.SetActive(false);
+
+    }
+
+    public void OnClickGoStageButton()
+    {
+        SceneManager.LoadScene("Stage");
     }
 
 

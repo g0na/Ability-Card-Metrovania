@@ -19,7 +19,7 @@ public class StageManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Instantiate(player, startPoint.transform.position, Quaternion.identity);
+        // Instantiate(player, startPoint.transform.position, Quaternion.identity);
         isPaused = false;
     }
 

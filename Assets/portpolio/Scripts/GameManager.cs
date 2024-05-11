@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-
+    [SerializeField] public GameObject cardSelectWindow;
 
 
     private void Awake()

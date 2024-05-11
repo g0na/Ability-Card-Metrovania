@@ -822,7 +822,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startPoint: {fileID: 588877864}
-  player: {fileID: 2536808}
+  player: {fileID: 0}
   gameOverWindow: {fileID: 672892293}
   isPaused: 0
   mapSize: 0
