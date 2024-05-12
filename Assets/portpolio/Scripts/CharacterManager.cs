@@ -244,10 +244,14 @@ public class CharacterManager : MonoBehaviour
     {
         if (Input.GetButtonDown("Dash"))
         {
-            pState.dashing = true;
-            isHurt = true;
-            anim.SetTrigger("Dashing");
-            StartCoroutine(Invulnerable());
+            if (gm.GetComponent<GameManager>().activeDash)
+            {
+                pState.dashing = true;
+                isHurt = true;
+                anim.SetTrigger("Dashing");
+                StartCoroutine(Invulnerable());
+            }
+
         }
     }
 
