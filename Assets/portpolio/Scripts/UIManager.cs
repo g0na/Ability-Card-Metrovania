@@ -44,13 +44,13 @@ public class UIManager : MonoBehaviour
         if (sm.GetComponent<StageManager>().isPaused)
         {
             sm.GetComponent<StageManager>().isPaused = false;
-            Time.timeScale = 0f;
+            Time.timeScale = 1f;
 
         }
         else
         {
             sm.GetComponent<StageManager>().isPaused = true;
-            Time.timeScale = 1f;
+            Time.timeScale = 0f;
         }       
 
     }
