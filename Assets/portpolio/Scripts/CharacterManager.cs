@@ -123,6 +123,7 @@ public class CharacterManager : MonoBehaviour
                 Move();
                 Jump();
                 Flip();
+                Dash();
                 Attack();
                 ShotAttack();
             }
@@ -237,6 +238,16 @@ public class CharacterManager : MonoBehaviour
         }
         rb.velocity = new Vector2(walkSpeed * xAxis, rb.velocity.y);
         anim.SetBool("Walking", rb.velocity.x != 0 && Grounded());
+    }
+
+    private void Dash() 
+    {
+        if (Input.GetButtonDown("Dash"))
+        {
+            pState.dashing = true;
+            anim.SetTrigger("Dashing");
+            StartCoroutine(Invulnerable());
+        }
     }
 
     public bool Grounded()
