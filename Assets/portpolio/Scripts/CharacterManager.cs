@@ -39,6 +39,7 @@ public class CharacterManager : MonoBehaviour
     [SerializeField] float hp = 10;
     [SerializeField] float curHp = 10;
     [SerializeField] Slider hpBar;
+    [SerializeField] GameObject bloodSpurt;
 
 
 
@@ -386,6 +387,7 @@ public class CharacterManager : MonoBehaviour
                 else
                   x = -1;
                 
+                
                 anim.SetTrigger("TakeDamage");
                 StartCoroutine(Knockback(x));
                 StartCoroutine(Invulnerable());
@@ -402,6 +404,10 @@ public class CharacterManager : MonoBehaviour
     // Recoil Function
     private IEnumerator Knockback(float dir)
     {
+        //Player's blood effect
+        GameObject bloodParticles = Instantiate(bloodSpurt, transform.position, Quaternion.identity);
+        Destroy(bloodParticles, 1.5f);
+        
         isKnockback = true;
         float ctime = 0;
         while(ctime < 0.2f)

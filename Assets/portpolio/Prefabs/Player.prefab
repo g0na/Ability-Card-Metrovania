@@ -227,6 +227,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkSpeed: 10
+  dashCooldown: 0
   jumpForce: 45
   jumpBufferFrames: 50
   coyoteTime: 0.1
@@ -242,6 +243,7 @@ MonoBehaviour:
   hp: 10
   curHp: 10
   hpBar: {fileID: 0}
+  bloodSpurt: {fileID: 1526360051669986149, guid: 1ffe097633ad74585962fecf68b835e7, type: 3}
   knockbackSpeed: 20
   damage: 2
   meleeCooltime: 0.5
@@ -266,3 +268,5 @@ MonoBehaviour:
   recoilingX: 0
   recoilingY: 0
   lookingRight: 0
+  alive: 0
+  dashing: 0
