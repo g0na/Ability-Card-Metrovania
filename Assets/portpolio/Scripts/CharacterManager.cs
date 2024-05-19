@@ -62,7 +62,7 @@ public class CharacterManager : MonoBehaviour
     [SerializeField] GameObject endPoint;
 
 
-    // Noraml Variables
+    // Normal Variables
     private Rigidbody2D rb;
     PlayerStateList pState;
     SpriteRenderer sr;
@@ -75,7 +75,7 @@ public class CharacterManager : MonoBehaviour
     // 리코일의 이동할 목표 위치
     private Vector2 targetPosition;
     public static CharacterManager Instance;
-
+    private int originalLayer;
 
     GameObject sm;
     GameObject gm;
@@ -103,6 +103,7 @@ public class CharacterManager : MonoBehaviour
         // hpBar.value = (float)curHp / (float)hp;
         gravity = rb.gravityScale;
         whatIsGround = LayerMask.GetMask("Ground");
+        originalLayer = gameObject.layer;
 
         sm = GameObject.Find("StageManager");
         gm = GameObject.Find("GameManager");
@@ -172,20 +173,6 @@ public class CharacterManager : MonoBehaviour
             Debug.Log("Body Hit!");
 
             Hurt(_other.gameObject.GetComponent<Enemy>().enemyDamage, _other.transform.position);
-
-            // if (transform.position.x - _other.transform.position.x > 0) 
-            // {
-            //     // 목표 위치 설정
-            //     targetPosition = transform.position + new Vector3(2, 2, 0);
-            // }
-            // else if (transform.position.x - _other.transform.position.x < 0)
-            // {
-            //     // 목표 위치 설정
-            //     targetPosition = transform.position + new Vector3(-2, 2, 0);
-            // }
-
-            // // Coroutine 시작
-            // StartCoroutine(MoveOverTime());
         }
     }
 
@@ -247,13 +234,32 @@ public class CharacterManager : MonoBehaviour
         {
             if (gm.GetComponent<GameManager>().activeDash)
             {
-                pState.dashing = true;
+                StartCoroutine(PerformDash());
+                
+                /* pState.dashing = true;
                 isHurt = true;
                 anim.SetTrigger("Dashing");
-                StartCoroutine(Invulnerable());
+                StartCoroutine(Invulnerable()); */
             }
 
         }
+    }
+
+    private IEnumerator PerformDash()
+    {
+        // Change Layer
+        gameObject.layer = LayerMask.NameToLayer("PlayerDashing");
+
+        pState.dashing = true;
+        anim.SetTrigger("Dashing");
+        
+        // Dash time
+        yield return new WaitForSeconds(0.5f);
+        
+        // Back to original layer
+        gameObject.layer = originalLayer;
+
+        pState.dashing = false;
     }
 
     public bool Grounded()
@@ -368,6 +374,9 @@ public class CharacterManager : MonoBehaviour
             curHp = curHp - damage;
             if (curHp <= 0)
             {
+                //Player's blood effect
+                GameObject bloodParticles = Instantiate(bloodSpurt, transform.position, Quaternion.identity);
+                Destroy(bloodParticles, 1.5f);
                 hpBar.value = 0;
                 // player dead
                 pState.alive = false;
