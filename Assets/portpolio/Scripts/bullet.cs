@@ -41,9 +41,6 @@ public class bullet : MonoBehaviour
         {
             transform.Translate(transform.right * -1 * bulletSpeed * Time.deltaTime);
         }
-
-
-
     }
 
     void DestroyBullet()

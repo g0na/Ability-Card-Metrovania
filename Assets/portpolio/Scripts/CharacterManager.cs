@@ -49,10 +49,15 @@ public class CharacterManager : MonoBehaviour
     [SerializeField] float damage = 1;
     [SerializeField] float meleeCooltime = 0.5f;
     float timeBetweenAttack, timeSinceAttack;
-    GameObject bullets;
+    // fireball attack
+    private GameObject bullets;
     public GameObject bullet;
     public Transform bulletPos;
     public float bulletCooltime;
+    // aura attack
+    public GameObject aura;
+    public Transform auraPos;
+    public float auraCooltime;
     
     private float curTime;
 
@@ -128,6 +133,7 @@ public class CharacterManager : MonoBehaviour
                 Dash();
                 Attack();
                 ShotAttack();
+                AuraAttack();
             }
             
         }
@@ -235,11 +241,6 @@ public class CharacterManager : MonoBehaviour
             if (gm.GetComponent<GameManager>().activeDash)
             {
                 StartCoroutine(PerformDash());
-                
-                /* pState.dashing = true;
-                isHurt = true;
-                anim.SetTrigger("Dashing");
-                StartCoroutine(Invulnerable()); */
             }
 
         }
@@ -344,7 +345,8 @@ public class CharacterManager : MonoBehaviour
             curTime -= Time.deltaTime;
         }
     }
-
+    
+    // fireball attack
     void ShotAttack()
     {
         if (curTime <= 0)
@@ -361,6 +363,23 @@ public class CharacterManager : MonoBehaviour
                 
             }
             
+        }
+        curTime -= Time.deltaTime;
+    }
+
+    // aura attack
+    void AuraAttack()
+    {
+        if (curTime <= 0)
+        {
+            if (Input.GetKey(KeyCode.X))
+            {
+                anim.SetTrigger("Attack");
+                Debug.Log("Aura Attack!");
+                bullets = Instantiate(aura, auraPos.position, transform.rotation);
+                bullets.GetComponent<bullet>().dir = pState.lookingRight;
+                curTime = auraCooltime;
+            }
         }
         curTime -= Time.deltaTime;
     }
