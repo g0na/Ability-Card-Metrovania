@@ -34,10 +34,12 @@ public class PatrolEnemy : Enemy
             if (patrolDirection == -1 && this.transform.position.x < startPosition - patrolWidth / 2)
             {
                 patrolDirection = 1;
+                this.GetComponent<SpriteRenderer>().flipX = false;
             }
             else if(patrolDirection == 1 && this.transform.position.x > startPosition + patrolWidth / 2)
             {
                 patrolDirection = -1;
+                this.GetComponent<SpriteRenderer>().flipX = true;
             }
             this.transform.Translate(new Vector3(patrolStep * patrolDirection, 0, 0));
             yield return new WaitForSeconds(patrolStepTime);
