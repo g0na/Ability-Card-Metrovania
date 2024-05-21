@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 214186558048704245}
   - component: {fileID: 4968298923473790395}
   - component: {fileID: -8674284512232493198}
+  - component: {fileID: 3316076594203028527}
   m_Layer: 0
   m_Name: aura
   m_TagString: Untagged
@@ -97,10 +98,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4e274e9294d34148a1aba894bb3adc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  distance: 0.3
+  distance: 0.1
   isLayer:
     serializedVersion: 2
     m_Bits: 264
   dir: 0
   damage: 5
   bulletSpeed: 30
+--- !u!95 &3316076594203028527
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5852199759658664232}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 6b0fc4f73d6f6485dba0e9658183bb72, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class bullet : MonoBehaviour
 {
-    PlayerStateList pState;
     public float distance;
     public LayerMask isLayer;
     public bool dir;
@@ -15,7 +14,7 @@ public class bullet : MonoBehaviour
     void Start()
     {
         pState = GetComponent<PlayerStateList>();
-        Invoke("DestroyBullet", 2);
+        Invoke("DestroyBullet", 0.8f);
 
         isLayer = LayerMask.GetMask("Ground","Enemy");
     }
