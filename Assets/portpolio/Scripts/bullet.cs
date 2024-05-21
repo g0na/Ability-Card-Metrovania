@@ -13,7 +13,6 @@ public class bullet : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        pState = GetComponent<PlayerStateList>();
         Invoke("DestroyBullet", 0.8f);
 
         isLayer = LayerMask.GetMask("Ground","Enemy");
