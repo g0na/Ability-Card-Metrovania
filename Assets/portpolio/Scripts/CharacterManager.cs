@@ -58,6 +58,8 @@ public class CharacterManager : MonoBehaviour
     public GameObject aura;
     public Transform auraPos;
     public float auraCooltime;
+    // Defend
+    public float defendCooltime;
     
     private float curTime;
 
@@ -134,6 +136,7 @@ public class CharacterManager : MonoBehaviour
                 Attack();
                 ShotAttack();
                 AuraAttack();
+                Defend();
             }
             
         }
@@ -379,6 +382,20 @@ public class CharacterManager : MonoBehaviour
                 bullets = Instantiate(aura, auraPos.position, transform.rotation);
                 bullets.GetComponent<bullet>().dir = pState.lookingRight;
                 curTime = auraCooltime;
+            }
+        }
+        curTime -= Time.deltaTime;
+    }
+
+    void Defend()
+    {
+        if (curTime <= 0)
+        {
+            if (Input.GetKey(KeyCode.C))
+            {
+                anim.SetTrigger("Defending");
+                Debug.Log("Defend!");
+                curTime = defendCooltime;
             }
         }
         curTime -= Time.deltaTime;
