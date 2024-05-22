@@ -13,8 +13,9 @@ GameObject:
   - component: {fileID: 4041899081122178909}
   - component: {fileID: 8380325913071626719}
   - component: {fileID: 6565911887230055203}
+  - component: {fileID: 3295196153560750436}
   m_Layer: 0
-  m_Name: Mushromm Monster
+  m_Name: Mushroom Monster
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -176,3 +177,24 @@ MonoBehaviour:
   patrolWidth: 4
   patrolStep: 0.2
   patrolStepTime: 0.02
+--- !u!95 &3295196153560750436
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5745353293993133129}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e6f4ec8b2634347469546c9a677412a3, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 1
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

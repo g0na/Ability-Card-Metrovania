@@ -426,6 +426,9 @@ public class CharacterManager : MonoBehaviour
             else
             {
                 HandleHp();
+
+
+
                 float x = transform.position.x - pos.x;
                 if (x < 0)
                   x = 1;
