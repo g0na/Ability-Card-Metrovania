@@ -47,4 +47,12 @@ public class PatrolEnemy : Enemy
 
     }
 
+    public override void Hit(float _damage)
+    {
+
+        StopCoroutine(Patrol());
+        base.Hit(_damage);
+
+    }
+
 }

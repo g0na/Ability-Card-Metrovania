@@ -5,47 +5,65 @@ using static UnityEditor.PlayerSettings;
 
 public class Enemy : MonoBehaviour
 {
-
-    [SerializeField] float enemyHp = 10;
+    public float enemyMaxHp = 100;
+    [SerializeField] float enemyHp;
     [SerializeField] public float enemyDamage = 1f;
+    float starthp;
 
-    Rigidbody2D rb;
+
     GameObject player;
+    Animator anim;
+
+    GameObject hpbar;
+    public GameObject monsterHPbar;
 
     // Start is called before the first frame update
     void Start()
     {
-        rb = this.GetComponent<Rigidbody2D>();
-        player = GameObject.FindWithTag("Player");
+        
+       
     }
+
+    private void Awake()
+    {
+        player = GameObject.FindWithTag("Player");
+        
+        anim = GetComponent<Animator>();
+
+        enemyHp = enemyMaxHp;
+
+        hpbar = Instantiate(monsterHPbar, this.transform);
+
+        starthp = hpbar.transform.localScale.y;
+
+    }
+
 
     // Update is called once per frame
     protected virtual void Update()
     {
-        
-        if (enemyHp <= 0) 
+
+        if (enemyHp <= 0)
         {
             Destroy(gameObject);
         }
 
 
+        hpbar.transform.localScale = new Vector3(hpbar.transform.localScale.x, starthp * enemyHp / enemyMaxHp);
+
+
     }
 
-
-
-    public void Hit(float _damage)
+    public virtual void Hit(float _damage)
     {
-        enemyHp -= _damage;
-
+        anim.SetTrigger("Hit");
         float x = transform.position.x - player.GetComponent<Transform>().position.x;
         if (x < 0)
             x = 1;
         else
             x = -1;
-
-        StartCoroutine(EnemyKnockback(x));
-        
-        // rb.AddForce(Vector2.right * 10f * Time.deltaTime, ForceMode2D.Force);
+        StartCoroutine(EnemyKnockback(x));        
+        enemyHp -= _damage;       
 
     }
 
@@ -53,15 +71,17 @@ public class Enemy : MonoBehaviour
     IEnumerator EnemyKnockback(float dir)
     {
         float ctime = 0;
-        while (ctime < 0.2f)
+        float knockbacktime = 0.3f;
+        float knockbackpower = 20f;
+        while (ctime <knockbacktime)
         {
             if (transform.rotation.y == 0)
             {
-                transform.Translate(Vector2.left * 10 * Time.deltaTime * dir);
+                transform.Translate(Vector2.left * knockbackpower * Time.deltaTime * dir);
             }
             else
             {
-                transform.Translate(Vector2.left * 10 * Time.deltaTime * -1f * dir);
+                transform.Translate(Vector2.left * knockbackpower * Time.deltaTime * -1f * dir);
             }
 
             ctime += Time.deltaTime;
