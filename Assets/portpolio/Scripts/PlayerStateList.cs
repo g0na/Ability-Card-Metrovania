@@ -9,4 +9,5 @@ public class PlayerStateList : MonoBehaviour
     public bool lookingRight; 
     public bool alive;
     public bool dashing = false;
+    public bool defending;
 }

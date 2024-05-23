@@ -44,7 +44,9 @@ public class CharacterManager : MonoBehaviour
 
 
     [Header("Attack Settings")]
-    [SerializeField] int knockbackSpeed = 10;
+    [SerializeField] float knockbackSpeed = 10;
+    [SerializeField] float originalKnockbackSpeed;
+    [SerializeField] float defendKnockbackSpeed = 5;
     // for enemy attack
     [SerializeField] float damage = 1;
     [SerializeField] float meleeCooltime = 0.5f;
@@ -391,11 +393,20 @@ public class CharacterManager : MonoBehaviour
     {
         if (curTime <= 0)
         {
-            if (Input.GetKey(KeyCode.C))
+            if (Input.GetKeyDown(KeyCode.C))
             {
-                anim.SetTrigger("Defending");
-                Debug.Log("Defend!");
+                anim.SetBool("Defending", true);
+                pState.defending = true;
+                
+                Debug.Log("Defend On");
                 curTime = defendCooltime;
+            }
+
+            if (Input.GetKeyUp(KeyCode.C))
+            {
+                anim.SetBool("Defending", false);
+                pState.defending = false;
+                Debug.Log("Defend Off");
             }
         }
         curTime -= Time.deltaTime;
@@ -407,7 +418,12 @@ public class CharacterManager : MonoBehaviour
         if (!isHurt)
         {
             isHurt = true;
-            curHp = curHp - damage;
+
+            if (!pState.defending)
+            {
+                curHp = curHp - damage;
+            }
+            
             if (curHp <= 0)
             {
                 //Player's blood effect
@@ -426,17 +442,17 @@ public class CharacterManager : MonoBehaviour
             else
             {
                 HandleHp();
-
-
-
+                
                 float x = transform.position.x - pos.x;
                 if (x < 0)
                   x = 1;
                 else
                   x = -1;
-                
-                
-                anim.SetTrigger("TakeDamage");
+
+                if (!pState.defending)
+                {
+                    anim.SetTrigger("TakeDamage");
+                }
                 StartCoroutine(Knockback(x));
                 StartCoroutine(Invulnerable());
                 StartCoroutine(AlphaBlink());
@@ -452,9 +468,17 @@ public class CharacterManager : MonoBehaviour
     // Recoil Function
     private IEnumerator Knockback(float dir)
     {
-        //Player's blood effect
-        GameObject bloodParticles = Instantiate(bloodSpurt, transform.position, Quaternion.identity);
-        Destroy(bloodParticles, 1.5f);
+        if (pState.defending)
+        {
+            originalKnockbackSpeed = defendKnockbackSpeed;
+        }
+        else
+        {
+            originalKnockbackSpeed = knockbackSpeed;
+            //Player's blood effect
+            GameObject bloodParticles = Instantiate(bloodSpurt, transform.position, Quaternion.identity);
+            Destroy(bloodParticles, 1.5f);
+        }
         
         isKnockback = true;
         float ctime = 0;
@@ -462,11 +486,11 @@ public class CharacterManager : MonoBehaviour
         {
             if (transform.rotation.y == 0)
             {
-                transform.Translate(Vector2.left * knockbackSpeed * Time.deltaTime * dir);
+                transform.Translate(Vector2.left * originalKnockbackSpeed * Time.deltaTime * dir);
             }
             else
             {
-                transform.Translate(Vector2.left * knockbackSpeed * Time.deltaTime * -1f * dir);
+                transform.Translate(Vector2.left * originalKnockbackSpeed * Time.deltaTime * -1f * dir);
             }
 
             ctime += Time.deltaTime;
