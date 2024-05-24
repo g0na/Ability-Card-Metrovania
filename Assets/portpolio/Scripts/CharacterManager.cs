@@ -391,9 +391,8 @@ public class CharacterManager : MonoBehaviour
 
     void Defend()
     {
-        if (curTime <= 0)
-        {
-            if (Input.GetKeyDown(KeyCode.C))
+
+            if (Input.GetKeyDown(KeyCode.C) && !pState.defending)
             {
                 anim.SetBool("Defending", true);
                 pState.defending = true;
@@ -402,14 +401,12 @@ public class CharacterManager : MonoBehaviour
                 curTime = defendCooltime;
             }
 
-            if (Input.GetKeyUp(KeyCode.C))
+            if (Input.GetKeyUp(KeyCode.C) && pState.defending)
             {
                 anim.SetBool("Defending", false);
                 pState.defending = false;
                 Debug.Log("Defend Off");
             }
-        }
-        curTime -= Time.deltaTime;
     }
 
     // Player gets damage function
