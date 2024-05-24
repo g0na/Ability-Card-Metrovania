@@ -12,6 +12,23 @@ public class UIManager : MonoBehaviour
     GameObject sm;
     GameObject gm;
 
+    // card buttons
+
+    GameObject mainAttackCardMeelee;
+    GameObject mainAttackCardRangedAttack1;
+    GameObject mainAttackCardRangedAttack2;
+
+    GameObject abilityCardDash;
+    GameObject abilityCardDoubleJump;
+    GameObject abilityCardBlocking;
+    
+    // passive cards need to add more
+    GameObject passiveCard1; // relate with main attack
+    GameObject passiveCard2; // relate with ability
+    GameObject passiveCard3; // need to consor
+
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -104,6 +121,15 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    public void OnstartReload()
+    {
+
+    }
+
+    public void UpdateUI()
+    {
+
+    }
 
 
 }

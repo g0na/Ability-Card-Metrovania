@@ -13,7 +13,19 @@ public class GameManager : MonoBehaviour
     public bool activeDash;
     public bool onStage;
 
+
+    // character main attack 
+
+    // character active skill
+
+    // character passive skill
+
     public static GameManager Instance;
+
+
+
+
+
 
     private void Awake()
     {
