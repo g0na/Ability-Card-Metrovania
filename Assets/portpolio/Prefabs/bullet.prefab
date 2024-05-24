@@ -97,10 +97,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4e274e9294d34148a1aba894bb3adc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  distance: 0.1
+  distance: 0.3
   isLayer:
     serializedVersion: 2
     m_Bits: 264
   dir: 0
   damage: 2
-  bulletSpeed: 15
+  bulletSpeed: 30

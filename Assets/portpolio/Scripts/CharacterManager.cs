@@ -14,7 +14,6 @@ public class CharacterManager : MonoBehaviour
     
     [Header("Vertical Movement Settings")]
     [SerializeField] private float jumpForce = 45;
-    private float gravity;  
     private int jumpBufferCounter = 0;
     [SerializeField] private int jumpBufferFrames;
     private float coyoteTimeCounter = 0;
@@ -23,17 +22,17 @@ public class CharacterManager : MonoBehaviour
     [SerializeField] private int maxAirJumps;
 
 
-    [Header("Ground Check Settings")]
+    // Ground Check Settings
     [SerializeField] private Transform groundCheckPoint;
-    [SerializeField] private float groundCheckY = 0.2f;
-    [SerializeField] private float groundCheckX = 0.5f;
+    private float groundCheckY = 0.2f;
+    private float groundCheckX = 0.5f;
     [SerializeField] private LayerMask whatIsGround;
 
+    
     [Header("Recoil Settings")]
     // 이동에 걸리는 시간 (초)
     [SerializeField] public float moveDuration = 0.1f;    
-    [SerializeField] Animator anim;
-
+    
 
     [Header("HP Settings")]
     [SerializeField] float hp = 10;
@@ -42,11 +41,7 @@ public class CharacterManager : MonoBehaviour
     [SerializeField] GameObject bloodSpurt;
 
 
-
     [Header("Attack Settings")]
-    [SerializeField] float knockbackSpeed = 10;
-    [SerializeField] float originalKnockbackSpeed;
-    [SerializeField] float defendKnockbackSpeed = 5;
     // for enemy attack
     [SerializeField] float damage = 1;
     [SerializeField] float meleeCooltime = 0.5f;
@@ -55,14 +50,15 @@ public class CharacterManager : MonoBehaviour
     private GameObject bullets;
     public GameObject bullet;
     public Transform bulletPos;
-    public float bulletCooltime;
+    [SerializeField] float bulletCooltime;
     // aura attack
     public GameObject aura;
     public Transform auraPos;
-    public float auraCooltime;
-    // Defend
-    public float defendCooltime;
-    
+    [SerializeField] float auraCooltime;
+    // Knockback
+    private float knockbackSpeed = 10;
+    private float originalKnockbackSpeed;
+    private float defendKnockbackSpeed = 5;
     private float curTime;
 
 
@@ -72,6 +68,7 @@ public class CharacterManager : MonoBehaviour
 
 
     // Normal Variables
+    private Animator anim;
     private Rigidbody2D rb;
     PlayerStateList pState;
     SpriteRenderer sr;
@@ -81,6 +78,8 @@ public class CharacterManager : MonoBehaviour
     Color fullA = new Color(1, 1, 1, 1);
     private float xAxis;
     bool attack = false;
+    
+    
     // 리코일의 이동할 목표 위치
     private Vector2 targetPosition;
     public static CharacterManager Instance;
@@ -109,8 +108,6 @@ public class CharacterManager : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
-        // hpBar.value = (float)curHp / (float)hp;
-        gravity = rb.gravityScale;
         whatIsGround = LayerMask.GetMask("Ground");
         originalLayer = gameObject.layer;
 
@@ -361,13 +358,12 @@ public class CharacterManager : MonoBehaviour
                 if(gm.GetComponent<GameManager>().activeRangedAttack)
                 {
                     Debug.Log("shot!");
+                    anim.SetTrigger("Fireball");
                     bullets = Instantiate(bullet, bulletPos.position, transform.rotation);
                     bullets.GetComponent<bullet>().dir = pState.lookingRight;
                     curTime = bulletCooltime;
                 }
-                
             }
-            
         }
         curTime -= Time.deltaTime;
     }
@@ -396,9 +392,7 @@ public class CharacterManager : MonoBehaviour
             {
                 anim.SetBool("Defending", true);
                 pState.defending = true;
-                
                 Debug.Log("Defend On");
-                curTime = defendCooltime;
             }
 
             if (Input.GetKeyUp(KeyCode.C) && pState.defending)

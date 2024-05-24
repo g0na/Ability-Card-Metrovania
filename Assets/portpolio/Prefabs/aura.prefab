@@ -104,7 +104,7 @@ MonoBehaviour:
     m_Bits: 264
   dir: 0
   damage: 5
-  bulletSpeed: 30
+  bulletSpeed: 40
 --- !u!95 &3316076594203028527
 Animator:
   serializedVersion: 5
