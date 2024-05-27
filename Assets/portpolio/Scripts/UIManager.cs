@@ -121,6 +121,12 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    public void OnClickCardManagementButton()
+    {
+
+    }
+
+
     public void OnstartReload()
     {
 
