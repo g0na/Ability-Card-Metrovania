@@ -105,6 +105,7 @@ public class CharacterManager : MonoBehaviour
     {
         pState = GetComponent<PlayerStateList>();
         pState.alive = true;
+        pState.lookingRight = true;
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();

@@ -6,15 +6,15 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] public GameObject cardSelectWindow;
 
     // [Header("Character Ability")]
     public bool activeRangedAttack;
     public bool activeDash;
     public bool onStage;
 
-
     // character main attack 
+
+    public int mainAttack = 0;
 
     // character active skill
 
@@ -51,14 +51,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!onStage)
-        {
-            if (cardSelectWindow == null)
-            {
-                cardSelectWindow = GameObject.Find("Canvas").transform.Find("Card Select Window").gameObject;
 
-            }
-        }
 
     }
 

@@ -8,7 +8,7 @@ using UnityEngine.UI;
 public class UIManager : MonoBehaviour
 {
 
-
+    // 
     GameObject sm;
     GameObject gm;
 
@@ -28,13 +28,28 @@ public class UIManager : MonoBehaviour
     GameObject passiveCard3; // need to consor
 
 
+    // for card confirm window
+    GameObject cardConfirmWindow;
+    
+    GameObject currentMainAttackCard;
+    GameObject currentAbilityCard;
+    GameObject currentPassiveCard;
+
+    // for card management window
+    GameObject cardManagementWindow;
+
 
     // Start is called before the first frame update
     void Start()
     {
         sm = GameObject.Find("StageManager");
         gm = GameObject.Find("GameManager");
-        // cardSelectWindow = GameObject.Find("Card Select Window");
+
+        if (!gm.GetComponent<GameManager>().onStage)
+        {
+            cardConfirmWindow = GameObject.Find("Canvas").transform.Find("Card Confirm Window").gameObject;
+            cardManagementWindow = GameObject.Find("Canvas").transform.Find("Card Management Window").gameObject;
+        }
     }
 
     // Update is called once per frame
@@ -47,7 +62,7 @@ public class UIManager : MonoBehaviour
 
     public void OnClickStartButton()
     {
-        gm.GetComponent<GameManager>().cardSelectWindow.SetActive(true);
+        cardConfirmWindow.SetActive(true);
     }
 
     public void OnClickExitButton()
@@ -78,9 +93,9 @@ public class UIManager : MonoBehaviour
     }
 
 
-    public void OnClickCardSelectCloseButton()
+    public void OnClickCardConfirmWindowCloseButton()
     {
-        gm.GetComponent<GameManager>().cardSelectWindow.SetActive(false);
+        cardConfirmWindow.SetActive(false);
 
     }
 
@@ -90,7 +105,7 @@ public class UIManager : MonoBehaviour
         SceneManager.LoadScene("Stage");
     }
 
-
+    /*
     public void OnClickActivateRangedAttack()
     {
         if (gm.GetComponent<GameManager>().activeRangedAttack)
@@ -120,12 +135,23 @@ public class UIManager : MonoBehaviour
 
         }
     }
-
+    */
     public void OnClickCardManagementButton()
     {
-
+        cardManagementWindow.SetActive(true);
     }
 
+    public void OnClickCardManagementWindowCloseButton()
+    {
+        cardManagementWindow.SetActive(false);
+    }
+
+
+
+    public void OnLoadCardConfirmWindow()
+    {
+       // currentMainAttackCard = GameObject.Find("");
+    }
 
     public void OnstartReload()
     {
