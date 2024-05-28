@@ -13,18 +13,24 @@ public class GameManager : MonoBehaviour
     public bool onStage;
 
     // character main attack 
-
-    public int mainAttack = 0;
-
     // character active skill
-
     // character passive skill
 
+    /*
+    public const int mainAttackCount = 3;
+    public const int abilityCount = 3;
+    public const int passiveSkillCount = 3;
+    */
+
+    public int mainAttackCount = 3;
+    public int abilityCount = 3;
+    public int passiveSkillCount = 3;
+
+    public int mainAttack = 0;
+    public int ability = 0;
+    public int passiveSkill = 0;
+   
     public static GameManager Instance;
-
-
-
-
 
 
     private void Awake()

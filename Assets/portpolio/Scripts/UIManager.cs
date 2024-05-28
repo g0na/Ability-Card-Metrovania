@@ -1,6 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -33,10 +33,14 @@ public class UIManager : MonoBehaviour
     
     GameObject currentMainAttackCard;
     GameObject currentAbilityCard;
-    GameObject currentPassiveCard;
+    GameObject currentPassiveSkillCard;
 
     // for card management window
     GameObject cardManagementWindow;
+
+    GameObject[] mainAttackCards;
+    GameObject[] abilityCards;
+    GameObject[] passiveSkillCards;
 
 
     // Start is called before the first frame update
@@ -45,10 +49,22 @@ public class UIManager : MonoBehaviour
         sm = GameObject.Find("StageManager");
         gm = GameObject.Find("GameManager");
 
+        int mainAttackCardMax = gm.GetComponent<GameManager>().mainAttackCount;
+
+        mainAttackCards = new GameObject[mainAttackCardMax];
+
         if (!gm.GetComponent<GameManager>().onStage)
         {
             cardConfirmWindow = GameObject.Find("Canvas").transform.Find("Card Confirm Window").gameObject;
             cardManagementWindow = GameObject.Find("Canvas").transform.Find("Card Management Window").gameObject;
+
+            for (int i = 0; i < mainAttackCardMax; i++) {
+                Debug.Log(i);
+                mainAttackCards[i] = cardManagementWindow.transform.Find("MainAttacks").Find("Main Attack Card" + i).gameObject;
+                Debug.Log(mainAttackCards[i].ToString());
+            }
+
+
         }
     }
 
@@ -136,6 +152,9 @@ public class UIManager : MonoBehaviour
         }
     }
     */
+
+    // for card management window setting
+
     public void OnClickCardManagementButton()
     {
         cardManagementWindow.SetActive(true);
@@ -145,7 +164,10 @@ public class UIManager : MonoBehaviour
     {
         cardManagementWindow.SetActive(false);
     }
+    public void OnLoadCardManagementWindow()
+    {
 
+    }
 
 
     public void OnLoadCardConfirmWindow()
