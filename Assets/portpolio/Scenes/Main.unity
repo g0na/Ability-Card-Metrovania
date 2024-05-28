@@ -1417,8 +1417,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b135fa7d714a7641919a0ffd1c20e34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  activeRangedAttack: 0
-  activeDash: 0
+  activeRangedAttack: 1
+  activeDash: 1
   onStage: 0
   mainAttackCount: 3
   abilityCount: 3

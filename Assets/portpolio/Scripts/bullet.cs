@@ -10,6 +10,7 @@ public class bullet : MonoBehaviour
     [SerializeField] public int damage;
 
     public float bulletSpeed;
+    
     // Start is called before the first frame update
     void Start()
     {

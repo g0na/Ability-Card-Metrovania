@@ -50,23 +50,23 @@ public class UIManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        sm = GameObject.Find("StageManager");
-        gm = GameObject.Find("GameManager");
-
-        mainAttackCardMax = gm.GetComponent<GameManager>().mainAttackCount;
-        abilityCardMax = gm.GetComponent<GameManager>().abilityCount;
-        passiveCardMax = gm.GetComponent<GameManager>().passiveSkillCount;
-
-        mainAttackCards = new GameObject[mainAttackCardMax];
-        abilityCards = new GameObject[abilityCardMax];
-        passiveSkillCards = new GameObject[passiveCardMax];
-
-        if (!gm.GetComponent<GameManager>().onStage)
-        {
-            cardConfirmWindow = GameObject.Find("Canvas").transform.Find("Card Confirm Window").gameObject;
-            cardManagementWindow = GameObject.Find("Canvas").transform.Find("Card Management Window").gameObject;          
-
-        }
+        // sm = GameObject.Find("StageManager");
+        // gm = GameObject.Find("GameManager");
+        //
+        // mainAttackCardMax = gm.GetComponent<GameManager>().mainAttackCount;
+        // abilityCardMax = gm.GetComponent<GameManager>().abilityCount;
+        // passiveCardMax = gm.GetComponent<GameManager>().passiveSkillCount;
+        //
+        // mainAttackCards = new GameObject[mainAttackCardMax];
+        // abilityCards = new GameObject[abilityCardMax];
+        // passiveSkillCards = new GameObject[passiveCardMax];
+        //
+        // if (!gm.GetComponent<GameManager>().onStage)
+        // {
+        //     cardConfirmWindow = GameObject.Find("Canvas").transform.Find("Card Confirm Window").gameObject;
+        //     cardManagementWindow = GameObject.Find("Canvas").transform.Find("Card Management Window").gameObject;          
+        //
+        // }
     }
 
     // Update is called once per frame

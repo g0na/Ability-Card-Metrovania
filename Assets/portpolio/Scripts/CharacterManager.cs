@@ -241,29 +241,32 @@ public class CharacterManager : MonoBehaviour
     {
         if (Input.GetButtonDown("Dash"))
         {
-            if (gm.GetComponent<GameManager>().activeDash)
-            {
-                StartCoroutine(PerformDash());
-            }
-
+            // if (gm.GetComponent<GameManager>().activeDash)
+            // {
+            StartCoroutine(PerformDash());
+            // }
         }
     }
 
     private IEnumerator PerformDash()
     {
-        // Change Layer
-        gameObject.layer = LayerMask.NameToLayer("PlayerDashing");
-
-        pState.dashing = true;
-        anim.SetTrigger("Dashing");
+        if (!pState.dashing && (xAxis > 0 || xAxis < 0))
+        {
+            pState.dashing = true;
+            
+            anim.SetTrigger("Dashing");
+            
+            // Change Layer
+            gameObject.layer = LayerMask.NameToLayer("PlayerDashing");
+            
+            // Dash time
+            yield return new WaitForSeconds(0.5f);
         
-        // Dash time
-        yield return new WaitForSeconds(0.5f);
-        
-        // Back to original layer
-        gameObject.layer = originalLayer;
-
-        pState.dashing = false;
+            // Back to original layer
+            gameObject.layer = originalLayer;
+            
+            pState.dashing = false;
+        }
     }
 
     public bool Grounded()
@@ -290,14 +293,14 @@ public class CharacterManager : MonoBehaviour
             rb.velocity = new Vector2(rb.velocity.x, 0);
         }
 
-        if (!pState.jumping)
+        if (!pState.jumping && !pState.dashing)
         {
             if (jumpBufferCounter > 0 && coyoteTimeCounter > 0)
             {
                 rb.velocity = new Vector3(rb.velocity.x, jumpForce);
                 pState.jumping = true;
             }
-            else if (!Grounded() && airJumpCounter < maxAirJumps && Input.GetButtonDown("Jump"))
+            else if (!Grounded() && airJumpCounter < maxAirJumps && Input.GetButton("Jump"))
             {
                 pState.jumping = true;
                 airJumpCounter ++;
@@ -332,13 +335,14 @@ public class CharacterManager : MonoBehaviour
 
     void Attack()
     {
-        if (curTime <= 0)
+        if (curTime <= 0 && !pState.attacking)
         {
             timeSinceAttack = Time.deltaTime;
 
             if (attack && timeSinceAttack >= timeBetweenAttack)
             {
                 timeSinceAttack = 0;
+                pState.attacking = true;
                 anim.SetTrigger("Attack");
                 curTime = meleeCooltime;
             }
@@ -347,26 +351,30 @@ public class CharacterManager : MonoBehaviour
         {
             curTime -= Time.deltaTime;
         }
+
+        pState.attacking = false;
     }
     
     // fireball attack
     void ShotAttack()
     {
-        if (curTime <= 0)
+        if (curTime <= 0 && !pState.fireball)
         {
             if (Input.GetKey(KeyCode.Z))
             {
-                if(gm.GetComponent<GameManager>().activeRangedAttack)
-                {
+                // if(gm.GetComponent<GameManager>().activeRangedAttack)
+                // {
                     Debug.Log("shot!");
+                    pState.fireball = true;
                     anim.SetTrigger("Fireball");
                     bullets = Instantiate(bullet, bulletPos.position, transform.rotation);
                     bullets.GetComponent<bullet>().dir = pState.lookingRight;
                     curTime = bulletCooltime;
-                }
+                // }
             }
         }
         curTime -= Time.deltaTime;
+        pState.fireball = false;
     }
 
     // aura attack
