@@ -22,7 +22,8 @@ public class GameManager : MonoBehaviour
     public const int passiveSkillCount = 3;
     */
 
-    public int mainAttackCount = 3;
+    // exact count
+    public int mainAttackCount = 4;
     public int abilityCount = 3;
     public int passiveSkillCount = 3;
 
