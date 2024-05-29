@@ -300,7 +300,7 @@ public class CharacterManager : MonoBehaviour
                 rb.velocity = new Vector3(rb.velocity.x, jumpForce);
                 pState.jumping = true;
             }
-            else if (!Grounded() && airJumpCounter < maxAirJumps && Input.GetButton("Jump"))
+            else if (!Grounded() && airJumpCounter < maxAirJumps && Input.GetButtonDown("Jump"))
             {
                 pState.jumping = true;
                 airJumpCounter ++;
@@ -358,7 +358,7 @@ public class CharacterManager : MonoBehaviour
     // fireball attack
     void ShotAttack()
     {
-        if (curTime <= 0 && !pState.fireball)
+        if (curTime <= 0 && !pState.dashing)
         {
             if (Input.GetKey(KeyCode.Z))
             {
@@ -380,7 +380,7 @@ public class CharacterManager : MonoBehaviour
     // aura attack
     void AuraAttack()
     {
-        if (curTime <= 0)
+        if (curTime <= 0 && !pState.dashing)
         {
             if (Input.GetKey(KeyCode.X))
             {
