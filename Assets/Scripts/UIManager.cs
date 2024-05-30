@@ -52,6 +52,13 @@ public class UIManager : MonoBehaviour
 
     public static GameObject cardDescription;
 
+    // for card confirm window
+
+    GameObject[] confirmCards = new GameObject[3];
+
+
+
+
 
     // Start is called before the first frame update
     void Start()
@@ -118,6 +125,7 @@ public class UIManager : MonoBehaviour
 
     public void OnClickCardConfirmWindowCloseButton()
     {
+        OnLoadCardConfirmWindow();
         cardConfirmWindow.SetActive(false);
 
     }
@@ -258,7 +266,7 @@ public class UIManager : MonoBehaviour
         cardCursor = 0;
         cardType = 1;
 
-        cardDescription.GetComponent<TextMeshProUGUI>().text = "Main Attack : bash" + "\n" + "\n" + "slash a sword to attack enemy";
+        cardDescription.GetComponent<TextMeshProUGUI>().text = "Abiity : dash" + "\n" + "\n" + "roll over to avoid a attack";
 
     }
     public void OnClickAbilityCard1()
@@ -266,7 +274,7 @@ public class UIManager : MonoBehaviour
         cardCursor = 1;
         cardType = 1;
 
-        cardDescription.GetComponent<TextMeshProUGUI>().text = "Main Attack : bash" + "\n" + "\n" + "slash a sword to attack enemy";
+        cardDescription.GetComponent<TextMeshProUGUI>().text = "Abiity : double jump" + "\n" + "\n" + "you can jump twice";
 
     }
     public void OnClickAbilityCard2()
@@ -274,7 +282,7 @@ public class UIManager : MonoBehaviour
         cardCursor = 2;
         cardType = 1;
 
-        cardDescription.GetComponent<TextMeshProUGUI>().text = "Main Attack : bash" + "\n" + "\n" + "slash a sword to attack enemy";
+        cardDescription.GetComponent<TextMeshProUGUI>().text = "Abiity : guard" + "\n" + "\n" + "hold up a shield to prevent an enemy's attack";
 
     }
     public void onClickPassiveSkillCard0()
@@ -282,7 +290,7 @@ public class UIManager : MonoBehaviour
         cardCursor = 0;
         cardType = 2;
 
-        cardDescription.GetComponent<TextMeshProUGUI>().text = "Main Attack : bash" + "\n" + "\n" + "slash a sword to attack enemy";
+        cardDescription.GetComponent<TextMeshProUGUI>().text = "Passive Skill : bash" + "\n" + "\n" + "TBD";
 
     }
     public void onClickPassiveSkillCard1()
@@ -290,7 +298,7 @@ public class UIManager : MonoBehaviour
         cardCursor = 1;
         cardType = 2;
 
-        cardDescription.GetComponent<TextMeshProUGUI>().text = "Main Attack : bash" + "\n" + "\n" + "slash a sword to attack enemy";
+        cardDescription.GetComponent<TextMeshProUGUI>().text = "Passive Skill : bash" + "\n" + "\n" + "TBD";
 
     }
     public void onClickPassiveSkillCard2()
@@ -298,7 +306,7 @@ public class UIManager : MonoBehaviour
         cardCursor = 2;
         cardType = 2;
 
-        cardDescription.GetComponent<TextMeshProUGUI>().text = "Main Attack : bash" + "\n" + "\n" + "slash a sword to attack enemy";
+        cardDescription.GetComponent<TextMeshProUGUI>().text = "Passive Skill : bash" + "\n" + "\n" + "TBD";
 
     }
 
@@ -326,7 +334,11 @@ public class UIManager : MonoBehaviour
 
     public void OnLoadCardConfirmWindow()
     {
-       // currentMainAttackCard = GameObject.Find("");
+        // currentMainAttackCard = GameObject.Find("");
+        confirmCards[0] = GameObject.Find("Canvas").transform.Find("Card Confirm Window").transform.Find("Main Attack Card").gameObject;
+        // Debug.Log(Resources.Load("CardImages/1"));
+        // Debug.Log(Resources.Load("CardImages/asdasd"));
+        confirmCards[0].GetComponent<Image>().sprite = Resources.Load<Sprite>("CardImages/1");
     }
 
     public void OnstartReload()
