@@ -220,7 +220,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 97432192}
         m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
-        m_MethodName: OnClickActivateRangedAttack
+        m_MethodName: OnClickMainAttackCard3
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -366,7 +366,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 133811139}
         m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
-        m_MethodName: OnClickGoStageButton
+        m_MethodName: OnClickCardSelectButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1195,7 +1195,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 332381419}
         m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
-        m_MethodName: OnClickActivateRangedAttack
+        m_MethodName: OnClickMainAttackCard1
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1340,7 +1340,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 445884198}
         m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
-        m_MethodName: OnClickActivateRangedAttack
+        m_MethodName: OnClickMainAttackCard2
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1538,7 +1538,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 561548676}
         m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
-        m_MethodName: OnClickActivateRangedAttack
+        m_MethodName: OnClickAbilityCard0
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2586,7 +2586,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 955106127}
         m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
-        m_MethodName: OnClickActivateRangedAttack
+        m_MethodName: OnClickMainAttackCard0
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2609,7 +2609,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.37254906, g: 0.55923074, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -3652,7 +3652,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1359762094}
         m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
-        m_MethodName: OnClickActivateRangedAttack
+        m_MethodName: OnClickAbilityCard1
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4116,7 +4116,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1471929812}
         m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
-        m_MethodName: OnClickActivateRangedAttack
+        m_MethodName: OnClickAbilityCard2
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4896,7 +4896,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1627387830}
         m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
-        m_MethodName: OnClickActivateRangedAttack
+        m_MethodName: onClickPassiveSkillCard1
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5175,7 +5175,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1689654305}
         m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
-        m_MethodName: OnClickActivateRangedAttack
+        m_MethodName: onClickPassiveSkillCard2
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5686,9 +5686,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '(blah blah)
-
-'
+  m_text: Card type:\t(blah blah) \n\n blanskdjanskdjnakjsfnkjnffaskn
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -5862,7 +5860,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1837076867}
         m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
-        m_MethodName: OnClickActivateRangedAttack
+        m_MethodName: onClickPassiveSkillCard0
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
