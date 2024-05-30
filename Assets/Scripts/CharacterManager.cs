@@ -55,6 +55,10 @@ public class CharacterManager : MonoBehaviour
     public GameObject aura;
     public Transform auraPos;
     [SerializeField] float auraCooltime;
+    // skill
+    public int skillCount;
+    public delegate void OnSkillChangedDelegate();
+    [HideInInspector] public OnSkillChangedDelegate onSkillChangedCallback;
     // Knockback
     private float knockbackSpeed = 10;
     private float originalKnockbackSpeed;
@@ -77,7 +81,7 @@ public class CharacterManager : MonoBehaviour
     Color halfA = new Color(1, 1, 1, 0.5f);
     Color fullA = new Color(1, 1, 1, 1);
     private float xAxis;
-    bool attack = false;
+    bool attack;
     
     
     // 리코일의 이동할 목표 위치
@@ -266,6 +270,23 @@ public class CharacterManager : MonoBehaviour
             gameObject.layer = originalLayer;
             
             pState.dashing = false;
+
+            skillCount --;
+        }
+    }
+
+    public int SkillCount
+    {
+        get { return skillCount; }
+        set
+        {
+            if (skillCount != value)
+            {
+                if (onSkillChangedCallback != null)
+                {
+                    onSkillChangedCallback.Invoke();
+                }
+            }
         }
     }
 

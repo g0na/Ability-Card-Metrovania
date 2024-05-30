@@ -249,6 +249,7 @@ MonoBehaviour:
   aura: {fileID: 5852199759658664232, guid: 42d134660980b4afb9c175537557fee1, type: 3}
   auraPos: {fileID: 0}
   auraCooltime: 2
+  skillCount: 3
   startPoint: {fileID: 0}
   endPoint: {fileID: 0}
 --- !u!114 &6667510376367788799
@@ -264,9 +265,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jumping: 0
+  attacking: 0
   recoilingX: 0
   recoilingY: 0
   lookingRight: 0
   alive: 0
   dashing: 0
   defending: 0
+  fireball: 1
