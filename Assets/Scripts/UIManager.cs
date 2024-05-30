@@ -67,6 +67,8 @@ public class UIManager : MonoBehaviour
         gm = GameObject.Find("GameManager");
         
         mainAttackCardMax = gm.GetComponent<GameManager>().mainAttackCount;
+        Debug.Log(gm.GetComponent<GameManager>().mainAttackCount);
+        Debug.Log(mainAttackCardMax);
         abilityCardMax = gm.GetComponent<GameManager>().abilityCount;
         passiveCardMax = gm.GetComponent<GameManager>().passiveSkillCount;
         
@@ -90,10 +92,7 @@ public class UIManager : MonoBehaviour
 
 
 
-    public void OnClickStartButton()
-    {
-        cardConfirmWindow.SetActive(true);
-    }
+
 
     public void OnClickExitButton()
     {
@@ -123,18 +122,7 @@ public class UIManager : MonoBehaviour
     }
 
 
-    public void OnClickCardConfirmWindowCloseButton()
-    {
-        OnLoadCardConfirmWindow();
-        cardConfirmWindow.SetActive(false);
 
-    }
-
-    public void OnClickGoStageButton()
-    {
-        gm.GetComponent<GameManager>().onStage = true;
-        SceneManager.LoadScene("Stage");
-    }
 
     /*
     public void OnClickActivateRangedAttack()
@@ -219,6 +207,10 @@ public class UIManager : MonoBehaviour
         {
             passiveSkillCards[i].GetComponent<Image>().color = Color.white;
         }
+
+        Debug.Log(mainAttackCardMax);
+        Debug.Log(gm.GetComponent<GameManager>().mainAttack);
+        
         mainAttackCards[gm.GetComponent<GameManager>().mainAttack].GetComponent<Image>().color = new Color(95 / 255f, 143 / 255f, 255 / 255f, 255 / 255f);
         abilityCards[gm.GetComponent<GameManager>().ability].GetComponent<Image>().color = new Color(95 / 255f, 143 / 255f, 255 / 255f, 255 / 255f);
         passiveSkillCards[gm.GetComponent<GameManager>().passiveSkill].GetComponent<Image>().color = new Color(95 / 255f, 143 / 255f, 255 / 255f, 255 / 255f);
@@ -330,15 +322,39 @@ public class UIManager : MonoBehaviour
         Debug.Log(cardType);
         OnLoadCardManagementWindow();
     }
-    
+
+    // functions for card confirm window 
+
+    public void OnClickStartButton()
+    {
+        cardConfirmWindow.SetActive(true);
+        OnLoadCardConfirmWindow();
+    }
+
+    public void OnClickCardConfirmWindowCloseButton()
+    {
+        cardConfirmWindow.SetActive(false);
+    }
 
     public void OnLoadCardConfirmWindow()
     {
         // currentMainAttackCard = GameObject.Find("");
         confirmCards[0] = GameObject.Find("Canvas").transform.Find("Card Confirm Window").transform.Find("Main Attack Card").gameObject;
+        confirmCards[1] = GameObject.Find("Canvas").transform.Find("Card Confirm Window").transform.Find("Ability Card").gameObject;
+        confirmCards[2] = GameObject.Find("Canvas").transform.Find("Card Confirm Window").transform.Find("Passive Card").gameObject;
         // Debug.Log(Resources.Load("CardImages/1"));
         // Debug.Log(Resources.Load("CardImages/asdasd"));
-        confirmCards[0].GetComponent<Image>().sprite = Resources.Load<Sprite>("CardImages/1");
+        confirmCards[0].GetComponent<Image>().sprite = Resources.Load<Sprite>("CardImages/mainattack" + gm.GetComponent<GameManager>().mainAttack);
+        confirmCards[1].GetComponent<Image>().sprite = Resources.Load<Sprite>("CardImages/ability" + gm.GetComponent<GameManager>().ability);
+        confirmCards[2].GetComponent<Image>().sprite = Resources.Load<Sprite>("CardImages/passiveskill" + gm.GetComponent<GameManager>().passiveSkill);
+
+    }
+
+
+    public void OnClickGoStageButton()
+    {
+        gm.GetComponent<GameManager>().onStage = true;
+        SceneManager.LoadScene("Stage");
     }
 
     public void OnstartReload()
