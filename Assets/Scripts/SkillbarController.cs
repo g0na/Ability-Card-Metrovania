@@ -49,7 +49,7 @@ public class SkillbarController : MonoBehaviour
     {
         for (int i = 0; i < skillFills.Length; i++)
         {
-            if (i < CharacterManager.Instance.skillCount)
+            if (i < CharacterManager.Instance.SkillCount)
             {
                 skillFills[i].fillAmount = 1;
             }

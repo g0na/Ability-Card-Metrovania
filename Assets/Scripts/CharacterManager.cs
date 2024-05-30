@@ -57,6 +57,7 @@ public class CharacterManager : MonoBehaviour
     [SerializeField] float auraCooltime;
     // skill
     public int skillCount;
+    public int curSkillCount;
     public delegate void OnSkillChangedDelegate();
     [HideInInspector] public OnSkillChangedDelegate onSkillChangedCallback;
     // Knockback
@@ -115,6 +116,8 @@ public class CharacterManager : MonoBehaviour
         anim = GetComponent<Animator>();
         whatIsGround = LayerMask.GetMask("Ground");
         originalLayer = gameObject.layer;
+
+        curSkillCount = skillCount;
 
         sm = GameObject.Find("StageManager");
         gm = GameObject.Find("GameManager");
@@ -256,6 +259,8 @@ public class CharacterManager : MonoBehaviour
     {
         if (!pState.dashing && (xAxis > 0 || xAxis < 0))
         {
+            SkillCount --;
+            
             pState.dashing = true;
             
             anim.SetTrigger("Dashing");
@@ -270,18 +275,18 @@ public class CharacterManager : MonoBehaviour
             gameObject.layer = originalLayer;
             
             pState.dashing = false;
-
-            skillCount --;
         }
     }
 
     public int SkillCount
     {
-        get { return skillCount; }
+        get { return curSkillCount; }
         set
         {
-            if (skillCount != value)
+            if (curSkillCount != value)
             {
+                curSkillCount = Mathf.Clamp(value, 0, skillCount);
+                
                 if (onSkillChangedCallback != null)
                 {
                     onSkillChangedCallback.Invoke();
@@ -385,6 +390,7 @@ public class CharacterManager : MonoBehaviour
             {
                 // if(gm.GetComponent<GameManager>().activeRangedAttack)
                 // {
+                    SkillCount--;
                     Debug.Log("shot!");
                     pState.fireball = true;
                     anim.SetTrigger("Fireball");
@@ -405,6 +411,7 @@ public class CharacterManager : MonoBehaviour
         {
             if (Input.GetKey(KeyCode.X))
             {
+                SkillCount--;
                 anim.SetTrigger("Attack");
                 Debug.Log("Aura Attack!");
                 bullets = Instantiate(aura, auraPos.position, transform.rotation);
@@ -420,6 +427,7 @@ public class CharacterManager : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.C) && !pState.defending)
             {
+                SkillCount--;
                 anim.SetBool("Defending", true);
                 pState.defending = true;
                 Debug.Log("Defend On");
@@ -442,7 +450,7 @@ public class CharacterManager : MonoBehaviour
 
             if (!pState.defending)
             {
-                curHp = curHp - damage;
+                curHp -= damage;
             }
             
             if (curHp <= 0)
