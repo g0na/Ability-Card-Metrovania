@@ -422,23 +422,33 @@ public class CharacterManager : MonoBehaviour
         curTime -= Time.deltaTime;
     }
 
+    public IEnumerator StartDefend(float duration)
+    {
+        float time = 0.0f;
+
+        while (time < 1.0f)
+        {
+            time += Time.deltaTime / duration;
+
+            // ======= 하고자 하는 작업을 구현 =======
+            anim.SetBool("Defending", true);
+            pState.defending = true;
+            Debug.Log("Defend On");
+            // =====================================
+            
+            yield return null;
+        }
+    }
+    
     void Defend()
     {
-
-            if (Input.GetKeyDown(KeyCode.C) && !pState.defending)
-            {
-                SkillCount--;
-                anim.SetBool("Defending", true);
-                pState.defending = true;
-                Debug.Log("Defend On");
-            }
-
-            if (Input.GetKeyUp(KeyCode.C) && pState.defending)
-            {
-                anim.SetBool("Defending", false);
-                pState.defending = false;
-                Debug.Log("Defend Off");
-            }
+        if (Input.GetKeyDown(KeyCode.C) && !pState.defending)
+        {
+            SkillCount--;
+            StartCoroutine(StartDefend(1.0f));
+        }
+        anim.SetBool("Defending", false);
+        pState.defending = false;
     }
 
     // Player gets damage function
