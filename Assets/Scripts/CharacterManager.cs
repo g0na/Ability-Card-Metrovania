@@ -58,6 +58,7 @@ public class CharacterManager : MonoBehaviour
     // skill
     public int skillCount;
     public int curSkillCount;
+    private bool isRecovering = false;
     public delegate void OnSkillChangedDelegate();
     [HideInInspector] public OnSkillChangedDelegate onSkillChangedCallback;
     // Knockback
@@ -144,6 +145,11 @@ public class CharacterManager : MonoBehaviour
                 ShotAttack();
                 AuraAttack();
                 Defend();
+
+                if (curSkillCount < 3)
+                {
+                    StartCoroutine(RecoverSkillCount());
+                }
             }
             
         }
@@ -294,6 +300,19 @@ public class CharacterManager : MonoBehaviour
             }
         }
     }
+    
+    private IEnumerator RecoverSkillCount()
+    {
+        if (isRecovering)
+        {
+            yield break;
+        }
+
+        isRecovering = true;
+        yield return new WaitForSeconds(1f);
+        SkillCount++;
+        isRecovering = false;
+    }
 
     public bool Grounded()
     {
@@ -421,7 +440,7 @@ public class CharacterManager : MonoBehaviour
         }
         curTime -= Time.deltaTime;
     }
-
+    
     public IEnumerator StartDefend(float duration)
     {
         float time = 0.0f;
