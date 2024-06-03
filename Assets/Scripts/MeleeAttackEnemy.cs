@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MeleeAttackEnemy : MonoBehaviour
+public class MeleeAttackEnemy : Enemy
 {
     // Start is called before the first frame update
     void Start()
@@ -11,8 +11,18 @@ public class MeleeAttackEnemy : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    protected override void Update()
     {
-        
+        base.Update();
     }
+
+
+
+    public override void Hit(float _damage)
+    {
+
+        base.Hit(_damage);
+
+    }
+
 }
