@@ -146,6 +146,7 @@ public class CharacterManager : MonoBehaviour
                 AuraAttack();
                 Defend();
 
+                // Recovering Skill Counts
                 if (curSkillCount < 3)
                 {
                     StartCoroutine(RecoverSkillCount());
@@ -218,6 +219,7 @@ public class CharacterManager : MonoBehaviour
 
     void GetInputs()
     {
+        if (pState.dashing) return;
         xAxis = Input.GetAxisRaw("Horizontal");
         attack = Input.GetMouseButtonDown(0);
     }
@@ -256,6 +258,7 @@ public class CharacterManager : MonoBehaviour
         {
             // if (gm.GetComponent<GameManager>().activeDash)
             // {
+            
             StartCoroutine(PerformDash());
             // }
         }
@@ -263,13 +266,26 @@ public class CharacterManager : MonoBehaviour
 
     private IEnumerator PerformDash()
     {
-        if (!pState.dashing && (xAxis > 0 || xAxis < 0))
+        if (!pState.dashing && Grounded())
         {
             SkillCount --;
             
+            anim.SetTrigger("Dashing");
+            
             pState.dashing = true;
             
-            anim.SetTrigger("Dashing");
+            if (pState.lookingRight) 
+            {
+                // 목표 위치 설정
+                targetPosition = transform.position + new Vector3(3f, 0, 0);
+            }
+            else if (!pState.lookingRight)
+            {
+                // 목표 위치 설정
+                targetPosition = transform.position + new Vector3(-3f, 0, 0);
+            }
+            
+            StartCoroutine(MoveOverTime(targetPosition));
             
             // Change Layer
             gameObject.layer = LayerMask.NameToLayer("PlayerDashing");
