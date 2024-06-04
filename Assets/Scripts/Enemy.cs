@@ -10,7 +10,6 @@ public class Enemy : MonoBehaviour
     [SerializeField] public float enemyDamage = 1f;
     float starthp;
 
-
     GameObject player;
     Animator anim;
 
@@ -28,6 +27,7 @@ public class Enemy : MonoBehaviour
     {
         player = GameObject.FindWithTag("Player");        
         anim = GetComponent<Animator>();
+
         enemyHp = enemyMaxHp;
         hpbar = Instantiate(monsterHPbar, this.transform);
         starthp = hpbar.transform.localScale.y;

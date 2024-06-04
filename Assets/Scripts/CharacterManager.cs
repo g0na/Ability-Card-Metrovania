@@ -94,6 +94,8 @@ public class CharacterManager : MonoBehaviour
     GameObject sm;
     GameObject gm;
 
+
+
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -152,7 +154,6 @@ public class CharacterManager : MonoBehaviour
                     StartCoroutine(RecoverSkillCount());
                 }
             }
-            
         }
 
     }
