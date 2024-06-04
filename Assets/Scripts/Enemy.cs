@@ -26,14 +26,10 @@ public class Enemy : MonoBehaviour
 
     private void Awake()
     {
-        player = GameObject.FindWithTag("Player");
-        
+        player = GameObject.FindWithTag("Player");        
         anim = GetComponent<Animator>();
-
         enemyHp = enemyMaxHp;
-
         hpbar = Instantiate(monsterHPbar, this.transform);
-
         starthp = hpbar.transform.localScale.y;
 
     }
@@ -47,7 +43,6 @@ public class Enemy : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
 
         hpbar.transform.localScale = new Vector3(hpbar.transform.localScale.x, starthp * enemyHp / enemyMaxHp);
 
