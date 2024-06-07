@@ -11,7 +11,7 @@ public class Enemy : MonoBehaviour
     float starthp;
 
     GameObject player;
-    Animator anim;
+    protected Animator anim;
 
     GameObject hpbar;
     public GameObject monsterHPbar;

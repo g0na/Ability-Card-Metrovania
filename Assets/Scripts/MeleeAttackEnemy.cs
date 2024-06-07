@@ -27,7 +27,8 @@ public class MeleeAttackEnemy : Enemy
 
         ntime += 1;
 
-        if (ntime % 240 == 0)
+        // ntime은 프레임마다 ++ 600프레임마다 meleeAttack 코루틴 실행 
+        if (ntime % 600 == 0)
         {
             StartCoroutine(MeeleeAttack());
 
@@ -44,18 +45,20 @@ public class MeleeAttackEnemy : Enemy
 
     }
 
-    IEnumerator MeeleeAttack()
+    IEnumerator MeeleeAttack() // 작동하고 느낌표, 10초뒤에 Attack()함수 실행 
     {
         aw.SetActive(true);
         Debug.Log("meeleeeeeeeeattack! ready!");
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.8f);
         {
             Attack();
         }
     }
 
+    // 애니메이션 변경되면서 공격 하는 부분. 
     public void Attack()
     {
+        anim.SetTrigger("Attack");
         Debug.Log("ataaaaak!");
         aw.SetActive(false);
     }
