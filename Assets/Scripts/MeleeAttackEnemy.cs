@@ -7,17 +7,32 @@ public class MeleeAttackEnemy : Enemy
 
     public GameObject attackWarning;
 
+    private GameObject aw;
+
+    private int ntime;
+
     // Start is called before the first frame update
     void Start()
     {
-        Instantiate(attackWarning, this.transform);
+
+        aw = Instantiate(attackWarning, this.transform);
+        aw.SetActive(false);
+
     }
 
     // Update is called once per frame
     protected override void Update()
     {
         base.Update();
-        StartCoroutine(MeeleeAttack());
+
+        ntime += 1;
+
+        if (ntime % 240 == 0)
+        {
+            StartCoroutine(MeeleeAttack());
+
+        }
+
     }
 
 
@@ -31,8 +46,17 @@ public class MeleeAttackEnemy : Enemy
 
     IEnumerator MeeleeAttack()
     {
-        Debug.Log("meeleeeeeeeeattack!");
-        yield return new WaitForSeconds(10f);
+        aw.SetActive(true);
+        Debug.Log("meeleeeeeeeeattack! ready!");
+        yield return new WaitForSeconds(0.5f);
+        {
+            Attack();
+        }
     }
 
+    public void Attack()
+    {
+        Debug.Log("ataaaaak!");
+        aw.SetActive(false);
+    }
 }
