@@ -67,8 +67,6 @@ public class UIManager : MonoBehaviour
         gm = GameObject.Find("GameManager");
         
         mainAttackCardMax = gm.GetComponent<GameManager>().mainAttackCount;
-        Debug.Log(gm.GetComponent<GameManager>().mainAttackCount);
-        Debug.Log(mainAttackCardMax);
         abilityCardMax = gm.GetComponent<GameManager>().abilityCount;
         passiveCardMax = gm.GetComponent<GameManager>().passiveSkillCount;
         

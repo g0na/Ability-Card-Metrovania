@@ -10,8 +10,8 @@ public class CharacterManager : MonoBehaviour
     [Header("Horizontal Movement Settings")]
     [SerializeField] private float walkSpeed = 1;
     [SerializeField] private float dashCooldown;
-    
-    
+
+
     [Header("Vertical Movement Settings")]
     [SerializeField] private float jumpForce = 45;
     private int jumpBufferCounter = 0;
@@ -28,11 +28,11 @@ public class CharacterManager : MonoBehaviour
     private float groundCheckX = 0.5f;
     [SerializeField] private LayerMask whatIsGround;
 
-    
+
     [Header("Recoil Settings")]
     // 이동에 걸리는 시간 (초)
-    [SerializeField] public float moveDuration = 0.1f;    
-    
+    [SerializeField] public float moveDuration = 0.1f;
+
 
     [Header("HP Settings")]
     [SerializeField] float hp = 10;
@@ -50,11 +50,11 @@ public class CharacterManager : MonoBehaviour
     private GameObject bullets;
     public GameObject bullet;
     public Transform bulletPos;
-    [SerializeField] float bulletCooltime;
+    [SerializeField] private float bulletCooltime;
     // aura attack
     public GameObject aura;
     public Transform auraPos;
-    [SerializeField] float auraCooltime;
+    [SerializeField] private float auraCooltime;
     // skill
     public int skillCount;
     public int curSkillCount;
@@ -84,8 +84,8 @@ public class CharacterManager : MonoBehaviour
     Color fullA = new Color(1, 1, 1, 1);
     private float xAxis;
     bool attack;
-    
-    
+
+
     // 리코일의 이동할 목표 위치
     private Vector2 targetPosition;
     public static CharacterManager Instance;
@@ -124,6 +124,28 @@ public class CharacterManager : MonoBehaviour
 
         sm = GameObject.Find("StageManager");
         gm = GameObject.Find("GameManager");
+
+        // Ability 관리 :
+        if (GameManager.Instance.ability == 1)
+        {
+            maxAirJumps = 2;
+        }
+
+        // passive skill 발동 : 
+        if (GameManager.Instance.passiveSkill == 0)
+        {
+
+        }
+        if (GameManager.Instance.passiveSkill == 1)
+        {
+            meleeCooltime = 0.1f;
+            bulletCooltime = 0.2f;
+            auraCooltime = 0.4f;
+        }
+        if (GameManager.Instance.passiveSkill == 2)
+        {
+
+        }
     }
 
     // Update is called once per frame
@@ -149,7 +171,7 @@ public class CharacterManager : MonoBehaviour
                 Defend();
 
                 // Recovering Skill Counts
-                if (curSkillCount < 3)
+                if (curSkillCount < skillCount)
                 {
                     StartCoroutine(RecoverSkillCount());
                 }
@@ -172,7 +194,7 @@ public class CharacterManager : MonoBehaviour
             float recoilPower = 2f;
             pState.recoilingX = true;
 
-            if (transform.position.x - _other.transform.position.x > 0) 
+            if (transform.position.x - _other.transform.position.x > 0)
             {
                 // 목표 위치 설정
                 targetPosition = transform.position + new Vector3(recoilPower, 0, 0);
@@ -232,7 +254,7 @@ public class CharacterManager : MonoBehaviour
             transform.localScale = new Vector2(-5, transform.localScale.y);
             pState.lookingRight = false;
         }
-        else if (xAxis > 0) 
+        else if (xAxis > 0)
         {
             transform.localScale = new Vector2(5, transform.localScale.y);
             pState.lookingRight = true;
@@ -247,21 +269,25 @@ public class CharacterManager : MonoBehaviour
         }
         if (this.transform.position.x > endPoint.transform.position.x)
         {
+            // TODO: 끝나면 윈도우 띄우기.
             Debug.Log("StageClear!");
         }
         rb.velocity = new Vector2(walkSpeed * xAxis, rb.velocity.y);
         anim.SetBool("Walking", rb.velocity.x != 0 && Grounded());
     }
 
-    private void Dash() 
+    private void Dash()
     {
+
+
         if (Input.GetButtonDown("Dash"))
         {
-            // if (gm.GetComponent<GameManager>().activeDash)
-            // {
-            
-            StartCoroutine(PerformDash());
-            // }
+            if (GameManager.Instance.ability == 0)
+            {
+                StartCoroutine(PerformDash());
+
+            }
+
         }
     }
 
@@ -269,13 +295,13 @@ public class CharacterManager : MonoBehaviour
     {
         if (!pState.dashing && Grounded())
         {
-            SkillCount --;
-            
+            SkillCount--;
+
             anim.SetTrigger("Dashing");
-            
+
             pState.dashing = true;
-            
-            if (pState.lookingRight) 
+
+            if (pState.lookingRight)
             {
                 // 목표 위치 설정
                 targetPosition = transform.position + new Vector3(3f, 0, 0);
@@ -285,18 +311,18 @@ public class CharacterManager : MonoBehaviour
                 // 목표 위치 설정
                 targetPosition = transform.position + new Vector3(-3f, 0, 0);
             }
-            
+
             StartCoroutine(MoveOverTime(targetPosition));
-            
+
             // Change Layer
             gameObject.layer = LayerMask.NameToLayer("PlayerDashing");
-            
+
             // Dash time
             yield return new WaitForSeconds(0.5f);
-        
+
             // Back to original layer
             gameObject.layer = originalLayer;
-            
+
             pState.dashing = false;
         }
     }
@@ -309,7 +335,7 @@ public class CharacterManager : MonoBehaviour
             if (curSkillCount != value)
             {
                 curSkillCount = Mathf.Clamp(value, 0, skillCount);
-                
+
                 if (onSkillChangedCallback != null)
                 {
                     onSkillChangedCallback.Invoke();
@@ -317,7 +343,7 @@ public class CharacterManager : MonoBehaviour
             }
         }
     }
-    
+
     private IEnumerator RecoverSkillCount()
     {
         if (isRecovering)
@@ -334,8 +360,8 @@ public class CharacterManager : MonoBehaviour
     public bool Grounded()
     {
 
-        if (Physics2D.Raycast(groundCheckPoint.position, Vector2.down, groundCheckY, whatIsGround) 
-            || Physics2D.Raycast(groundCheckPoint.position + new Vector3(groundCheckX, 0, 0), Vector2.down, groundCheckY, whatIsGround) 
+        if (Physics2D.Raycast(groundCheckPoint.position, Vector2.down, groundCheckY, whatIsGround)
+            || Physics2D.Raycast(groundCheckPoint.position + new Vector3(groundCheckX, 0, 0), Vector2.down, groundCheckY, whatIsGround)
             || Physics2D.Raycast(groundCheckPoint.position + new Vector3(-groundCheckX, 0, 0), Vector2.down, groundCheckY, whatIsGround))
         {
             pState.jumping = false;
@@ -351,12 +377,14 @@ public class CharacterManager : MonoBehaviour
     {
         if (Input.GetButtonUp("Jump") && rb.velocity.y > 0)
         {
-            pState.jumping = false; 
+            pState.jumping = false;
             rb.velocity = new Vector2(rb.velocity.x, 0);
         }
 
         if (!pState.jumping && !pState.dashing)
         {
+
+            // 일반 점프
             if (jumpBufferCounter > 0 && coyoteTimeCounter > 0)
             {
                 rb.velocity = new Vector3(rb.velocity.x, jumpForce);
@@ -364,11 +392,13 @@ public class CharacterManager : MonoBehaviour
             }
             else if (!Grounded() && airJumpCounter < maxAirJumps && Input.GetButtonDown("Jump"))
             {
+                curSkillCount--;
                 pState.jumping = true;
-                airJumpCounter ++;
+                airJumpCounter++;
                 rb.velocity = new Vector3(rb.velocity.x, jumpForce);
             }
             anim.SetBool("Jumping", !Grounded());
+
         }
     }
 
@@ -389,7 +419,7 @@ public class CharacterManager : MonoBehaviour
         {
             jumpBufferCounter = jumpBufferFrames;
         }
-        else 
+        else
         {
             jumpBufferCounter--;
         }
@@ -401,7 +431,7 @@ public class CharacterManager : MonoBehaviour
         {
             timeSinceAttack = Time.deltaTime;
 
-            if (attack && timeSinceAttack >= timeBetweenAttack)
+            if (attack && timeSinceAttack >= timeBetweenAttack && GameManager.Instance.mainAttack == 0)
             {
                 timeSinceAttack = 0;
                 pState.attacking = true;
@@ -416,24 +446,22 @@ public class CharacterManager : MonoBehaviour
 
         pState.attacking = false;
     }
-    
+
     // fireball attack
     void ShotAttack()
     {
         if (curTime <= 0 && !pState.dashing)
         {
-            if (Input.GetKey(KeyCode.Z))
+            if (attack && GameManager.Instance.mainAttack == 1)
             {
-                // if(gm.GetComponent<GameManager>().activeRangedAttack)
-                // {
-                    SkillCount--;
-                    Debug.Log("shot!");
-                    pState.fireball = true;
-                    anim.SetTrigger("Fireball");
-                    bullets = Instantiate(bullet, bulletPos.position, transform.rotation);
-                    bullets.GetComponent<bullet>().dir = pState.lookingRight;
-                    curTime = bulletCooltime;
-                // }
+
+                Debug.Log("shot!");
+                pState.fireball = true;
+                anim.SetTrigger("Fireball");
+                bullets = Instantiate(bullet, bulletPos.position, transform.rotation);
+                bullets.GetComponent<bullet>().dir = pState.lookingRight;
+                curTime = bulletCooltime;
+
             }
         }
         curTime -= Time.deltaTime;
@@ -445,9 +473,8 @@ public class CharacterManager : MonoBehaviour
     {
         if (curTime <= 0 && !pState.dashing)
         {
-            if (Input.GetKey(KeyCode.X))
+            if (attack && GameManager.Instance.mainAttack == 2)
             {
-                SkillCount--;
                 anim.SetTrigger("Attack");
                 Debug.Log("Aura Attack!");
                 bullets = Instantiate(aura, auraPos.position, transform.rotation);
@@ -457,7 +484,7 @@ public class CharacterManager : MonoBehaviour
         }
         curTime -= Time.deltaTime;
     }
-    
+
     public IEnumerator StartDefend(float duration)
     {
         float time = 0.0f;
@@ -471,20 +498,25 @@ public class CharacterManager : MonoBehaviour
             pState.defending = true;
             Debug.Log("Defend On");
             // =====================================
-            
+
             yield return null;
         }
     }
-    
+
     void Defend()
     {
-        if (Input.GetKeyDown(KeyCode.C) && !pState.defending)
+        if (Input.GetKeyDown(KeyCode.F) && !pState.defending)
         {
-            SkillCount--;
-            StartCoroutine(StartDefend(1.0f));
+            if (GameManager.Instance.ability == 2)
+            {
+                SkillCount--;
+                StartCoroutine(StartDefend(1.0f));
+                anim.SetBool("Defending", false);
+                pState.defending = false;
+            }
+
         }
-        anim.SetBool("Defending", false);
-        pState.defending = false;
+
     }
 
     // Player gets damage function
@@ -498,7 +530,7 @@ public class CharacterManager : MonoBehaviour
             {
                 curHp -= damage;
             }
-            
+
             if (curHp <= 0)
             {
                 //Player's blood effect
@@ -510,19 +542,19 @@ public class CharacterManager : MonoBehaviour
                 anim.SetTrigger("Death");
 
                 sm.GetComponent<StageManager>().ShowGameOverWindow();
-                
+
                 Destroy(gameObject, 1);
-                
+
             }
             else
             {
                 HandleHp();
-                
+
                 float x = transform.position.x - pos.x;
                 if (x < 0)
-                  x = 1;
+                    x = 1;
                 else
-                  x = -1;
+                    x = -1;
 
                 if (!pState.defending)
                 {
@@ -554,10 +586,10 @@ public class CharacterManager : MonoBehaviour
             GameObject bloodParticles = Instantiate(bloodSpurt, transform.position, Quaternion.identity);
             Destroy(bloodParticles, 1.5f);
         }
-        
+
         isKnockback = true;
         float ctime = 0;
-        while(ctime < 0.2f)
+        while (ctime < 0.2f)
         {
             if (transform.rotation.y == 0)
             {
@@ -577,7 +609,7 @@ public class CharacterManager : MonoBehaviour
     // Player blinks while player's status is invulnerable
     private IEnumerator AlphaBlink()
     {
-        while(isHurt)
+        while (isHurt)
         {
             yield return new WaitForSeconds(0.1f);
             sr.color = halfA;
@@ -585,7 +617,7 @@ public class CharacterManager : MonoBehaviour
             sr.color = fullA;
         }
     }
-    
+
     // Turning player's status to invulnerable for a second
     private IEnumerator Invulnerable()
     {
