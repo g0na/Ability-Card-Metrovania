@@ -4118,6 +4118,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 6287960660498431014, guid: f57f64443d1f4b44e86f3c06b1bb2b90, type: 3}
     - target: {fileID: 6014337500652624191, guid: fb9cb92b327e4ca4aa726f6d2a9640a3, type: 3}
+      propertyPath: damage
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6014337500652624191, guid: fb9cb92b327e4ca4aa726f6d2a9640a3, type: 3}
       propertyPath: auraPos
       value: 
       objectReference: {fileID: 1865542006}
@@ -4139,7 +4143,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6014337500652624191, guid: fb9cb92b327e4ca4aa726f6d2a9640a3, type: 3}
       propertyPath: skillCount
-      value: 10
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6014337500652624191, guid: fb9cb92b327e4ca4aa726f6d2a9640a3, type: 3}
       propertyPath: startPoint

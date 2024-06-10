@@ -7,7 +7,7 @@ public class bullet : MonoBehaviour
     public float distance;
     public LayerMask isLayer;
     public bool dir;
-    [SerializeField] public int damage;
+    public float damage;
 
     public float bulletSpeed;
     

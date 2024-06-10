@@ -365,5 +365,21 @@ public class UIManager : MonoBehaviour
 
     }
 
+    public void mainAttackSlider()
+    {
+        GameManager.Instance.mainAttack = (int)this.GetComponent<Slider>().value;
+    }
+    public void abilitySlider()
+    {
+        GameManager.Instance.ability = (int)this.GetComponent<Slider>().value;
+        CharacterManager.Instance.InitPassveCard();
+    }
+    public void passiveSlider()
+    {
+        GameManager.Instance.passiveSkill = (int)this.GetComponent<Slider>().value;
+        CharacterManager.Instance.InitPassveCard();
+
+    }
+
 
 }

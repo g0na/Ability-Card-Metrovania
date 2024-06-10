@@ -21,13 +21,13 @@ public class SkillbarController : MonoBehaviour
 
         CharacterManager.Instance.onSkillChangedCallback += UpdateSkillHUD;
         InstantiateSkillContainers();
-        UpdateSkillHUD();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        UpdateSkillHUD();
+
     }
 
     void SetSkillContainers()

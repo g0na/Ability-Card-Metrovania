@@ -35,15 +35,15 @@ public class CharacterManager : MonoBehaviour
 
 
     [Header("HP Settings")]
-    [SerializeField] float hp = 10;
-    [SerializeField] float curHp = 10;
+    [SerializeField] private float hp = 10;
+    [SerializeField] private float curHp;
     [SerializeField] Slider hpBar;
     [SerializeField] GameObject bloodSpurt;
 
 
     [Header("Attack Settings")]
     // for enemy attack
-    [SerializeField] float damage = 1;
+    [SerializeField] float damage = 10;
     [SerializeField] float meleeCooltime = 0.5f;
     float timeBetweenAttack, timeSinceAttack;
     // fireball attack
@@ -56,9 +56,10 @@ public class CharacterManager : MonoBehaviour
     public Transform auraPos;
     [SerializeField] private float auraCooltime;
     // skill
-    public int skillCount;
+    public int skillCount = 3;
     public int curSkillCount;
     private bool isRecovering = false;
+    private float recoverSpeed = 1f;
     public delegate void OnSkillChangedDelegate();
     [HideInInspector] public OnSkillChangedDelegate onSkillChangedCallback;
     // Knockback
@@ -120,32 +121,17 @@ public class CharacterManager : MonoBehaviour
         whatIsGround = LayerMask.GetMask("Ground");
         originalLayer = gameObject.layer;
 
-        curSkillCount = skillCount;
+        
 
         sm = GameObject.Find("StageManager");
         gm = GameObject.Find("GameManager");
 
-        // Ability 관리 :
-        if (GameManager.Instance.ability == 1)
-        {
-            maxAirJumps = 2;
-        }
 
-        // passive skill 발동 : 
-        if (GameManager.Instance.passiveSkill == 0)
-        {
+        //카드 설정
+        InitPassveCard();
 
-        }
-        if (GameManager.Instance.passiveSkill == 1)
-        {
-            meleeCooltime = 0.1f;
-            bulletCooltime = 0.2f;
-            auraCooltime = 0.4f;
-        }
-        if (GameManager.Instance.passiveSkill == 2)
-        {
-
-        }
+        curSkillCount = skillCount;
+        curHp = hp;
     }
 
     // Update is called once per frame
@@ -169,11 +155,12 @@ public class CharacterManager : MonoBehaviour
                 ShotAttack();
                 AuraAttack();
                 Defend();
+                Reset();
 
                 // Recovering Skill Counts
                 if (curSkillCount < skillCount)
                 {
-                    StartCoroutine(RecoverSkillCount());
+                    StartCoroutine(RecoverSkillCount(recoverSpeed));
                 }
             }
         }
@@ -272,8 +259,12 @@ public class CharacterManager : MonoBehaviour
             // TODO: 끝나면 윈도우 띄우기.
             Debug.Log("StageClear!");
         }
-        rb.velocity = new Vector2(walkSpeed * xAxis, rb.velocity.y);
-        anim.SetBool("Walking", rb.velocity.x != 0 && Grounded());
+        if (!pState.defending)
+        {
+            rb.velocity = new Vector2(walkSpeed * xAxis, rb.velocity.y);
+            anim.SetBool("Walking", rb.velocity.x != 0 && Grounded());
+        }
+
     }
 
     private void Dash()
@@ -344,7 +335,7 @@ public class CharacterManager : MonoBehaviour
         }
     }
 
-    private IEnumerator RecoverSkillCount()
+    private IEnumerator RecoverSkillCount(float spd)
     {
         if (isRecovering)
         {
@@ -352,7 +343,7 @@ public class CharacterManager : MonoBehaviour
         }
 
         isRecovering = true;
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(spd);
         SkillCount++;
         isRecovering = false;
     }
@@ -390,7 +381,7 @@ public class CharacterManager : MonoBehaviour
                 rb.velocity = new Vector3(rb.velocity.x, jumpForce);
                 pState.jumping = true;
             }
-            else if (!Grounded() && airJumpCounter < maxAirJumps && Input.GetButtonDown("Jump"))
+            else if (!Grounded() && airJumpCounter < maxAirJumps && Input.GetButtonDown("Jump") && curSkillCount > 0) // 더블점프?
             {
                 curSkillCount--;
                 pState.jumping = true;
@@ -460,6 +451,7 @@ public class CharacterManager : MonoBehaviour
                 anim.SetTrigger("Fireball");
                 bullets = Instantiate(bullet, bulletPos.position, transform.rotation);
                 bullets.GetComponent<bullet>().dir = pState.lookingRight;
+                bullets.GetComponent<bullet>().damage = damage/2;
                 curTime = bulletCooltime;
 
             }
@@ -479,10 +471,29 @@ public class CharacterManager : MonoBehaviour
                 Debug.Log("Aura Attack!");
                 bullets = Instantiate(aura, auraPos.position, transform.rotation);
                 bullets.GetComponent<bullet>().dir = pState.lookingRight;
+                bullets.GetComponent<bullet>().damage = damage;
                 curTime = auraCooltime;
             }
         }
         curTime -= Time.deltaTime;
+    }
+
+
+
+    void Defend()
+    {
+        if (Input.GetKeyDown(KeyCode.C) && !pState.defending)
+        {
+            if (GameManager.Instance.ability == 2 && skillCount > 0)
+            {
+                SkillCount--;
+                StartCoroutine(StartDefend(1.0f));
+                anim.SetBool("Defending", false);
+                pState.defending = false;
+            }
+
+        }
+
     }
 
     public IEnumerator StartDefend(float duration)
@@ -501,22 +512,8 @@ public class CharacterManager : MonoBehaviour
 
             yield return null;
         }
-    }
-
-    void Defend()
-    {
-        if (Input.GetKeyDown(KeyCode.F) && !pState.defending)
-        {
-            if (GameManager.Instance.ability == 2)
-            {
-                SkillCount--;
-                StartCoroutine(StartDefend(1.0f));
-                anim.SetBool("Defending", false);
-                pState.defending = false;
-            }
-
-        }
-
+        anim.SetBool("Defending", false);
+        pState.defending = false;
     }
 
     // Player gets damage function
@@ -625,4 +622,41 @@ public class CharacterManager : MonoBehaviour
         isHurt = false;
     }
 
+
+    public void InitPassveCard()
+    {
+        // Ability 관리 :
+        if (GameManager.Instance.ability == 1)
+        {
+            maxAirJumps = 2;
+        }
+
+        // passive skill 발동 : 
+        if (GameManager.Instance.passiveSkill == 0)
+        {
+            hp = hp * 2;
+            damage = damage * 2;
+        }
+        if (GameManager.Instance.passiveSkill == 1)
+        {
+            walkSpeed = walkSpeed * 2;
+
+            meleeCooltime = 0.1f;
+            bulletCooltime = 0.2f;
+            auraCooltime = 0.4f;
+        }
+        if (GameManager.Instance.passiveSkill == 2)
+        {
+            skillCount = 5;
+            recoverSpeed = recoverSpeed * 1/2;
+        }
+    }
+
+    private void Reset()
+    {
+        if (Input.GetKeyDown(KeyCode.R)){
+            Hurt(999999999999999, new Vector2(0, 0));
+
+        }
+    }
 }
