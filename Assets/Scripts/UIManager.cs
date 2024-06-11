@@ -352,7 +352,7 @@ public class UIManager : MonoBehaviour
     public void OnClickGoStageButton()
     {
         gm.GetComponent<GameManager>().onStage = true;
-        SceneManager.LoadScene("Stage");
+        SceneManager.LoadScene("Stage 1");
     }
 
     public void OnstartReload()
