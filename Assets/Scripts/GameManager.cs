@@ -33,8 +33,13 @@ public class GameManager : MonoBehaviour
     /// 2: 스킬 구슬 갯수가 늘어나고 빨리 회복한다.
     /// </summary>
     public int passiveSkill = 0;
-   
+
+
+    public int currentStage;
+    
     public static GameManager Instance;
+
+
 
 
     private void Awake()

@@ -258,6 +258,7 @@ public class CharacterManager : MonoBehaviour
         {
             // TODO: 끝나면 윈도우 띄우기.
             Debug.Log("StageClear!");
+            sm.GetComponent<StageManager>().ShowGameClearrWindow();
         }
         if (!pState.defending)
         {
@@ -537,9 +538,7 @@ public class CharacterManager : MonoBehaviour
                 // player dead
                 pState.alive = false;
                 anim.SetTrigger("Death");
-
                 sm.GetComponent<StageManager>().ShowGameOverWindow();
-
                 Destroy(gameObject, 1);
 
             }

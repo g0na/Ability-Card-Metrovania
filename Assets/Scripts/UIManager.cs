@@ -77,7 +77,7 @@ public class UIManager : MonoBehaviour
         if (!gm.GetComponent<GameManager>().onStage)
         {
             cardConfirmWindow = GameObject.Find("Canvas").transform.Find("Card Confirm Window").gameObject;
-            cardManagementWindow = GameObject.Find("Canvas").transform.Find("Card Management Window").gameObject;          
+            cardManagementWindow = GameObject.Find("Canvas").transform.Find("Card Management Window").gameObject;      
         
         }
     }
@@ -349,11 +349,7 @@ public class UIManager : MonoBehaviour
     }
 
 
-    public void OnClickGoStageButton()
-    {
-        gm.GetComponent<GameManager>().onStage = true;
-        SceneManager.LoadScene("Stage 1");
-    }
+
 
     public void OnstartReload()
     {
@@ -379,6 +375,24 @@ public class UIManager : MonoBehaviour
         GameManager.Instance.passiveSkill = (int)this.GetComponent<Slider>().value;
         CharacterManager.Instance.InitPassveCard();
 
+    }
+
+    public void OnClickGoStage1Button()
+    {
+        gm.GetComponent<GameManager>().onStage = true;
+        SceneManager.LoadScene("Stage 1");
+    }
+    public void OnClickGoStage2Button()
+    {
+        SceneManager.LoadScene("Stage 2");
+    }
+    public void OnClickGoStage3Button()
+    {
+        SceneManager.LoadScene("Stage 3");
+    }
+    public void OnClickGoBossStageButton()
+    {
+        SceneManager.LoadScene("BossStage");
     }
 
 

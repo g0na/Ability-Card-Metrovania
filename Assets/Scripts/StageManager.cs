@@ -11,6 +11,7 @@ public class StageManager : MonoBehaviour
     [SerializeField] GameObject player;
 
     [SerializeField] GameObject gameOverWindow;
+    [SerializeField] GameObject gameClearWindow;
 
     public bool isPaused;
 
@@ -33,5 +34,11 @@ public class StageManager : MonoBehaviour
     public void ShowGameOverWindow()
     {
         gameOverWindow.SetActive(true);
+    }
+
+    public void ShowGameClearrWindow()
+    {
+        gameClearWindow.SetActive(true);
+        Time.timeScale = 0f;
     }
 }
