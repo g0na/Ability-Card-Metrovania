@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class PatrolEnemy : Enemy
 {
-    // ½ÃÀÛ ÁöÁ¡
+    // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     [Header("Patrol set")]
     private float startPosition;
     private float patrolDirection;
     [SerializeField] private float patrolWidth;
     [SerializeField] private float patrolStep;
     [SerializeField] private float patrolStepTime;
+    
 
 
     // Start is called before the first frame update
@@ -18,8 +19,10 @@ public class PatrolEnemy : Enemy
     {
         startPosition = this.transform.position.x;
         patrolDirection = -1;
-        StartCoroutine(Patrol());
-
+        if (isAlive)
+        {
+            StartCoroutine(Patrol());
+        }
     }
 
     // Update is called once per frame
@@ -54,5 +57,15 @@ public class PatrolEnemy : Enemy
         base.Hit(_damage);
 
     }
-
+    
+    protected override void Die()
+    {
+        if (enemyHp <= 0)
+        {
+            StopCoroutine(Patrol());
+            anim.SetTrigger("Dead");
+            isAlive = false;
+            Destroy(gameObject, 1);
+        }
+    }
 }

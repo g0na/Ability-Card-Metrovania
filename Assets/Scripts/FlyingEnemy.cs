@@ -6,7 +6,6 @@ public class FlyingEnemy : Enemy
 {
     private Transform playerPos;
     private float enemyDir;
-    private Animator anim;
     
     // 발사체의 원본 프리팹
     public GameObject bulletPrefab;
@@ -23,27 +22,30 @@ public class FlyingEnemy : Enemy
     // Start is called before the first frame update
     void Start()
     {
-        anim = GetComponent<Animator>();
-        
         // 최근 공격 이후의 누적 시간을 0으로 초기화
         timeAfterAttack = 0f;
     }
 
     // Update is called once per frame
-    void Update()
+    protected override void Update()
     {
-        EnemyFlip();
+        base.Update();
         
-        timeAfterAttack += Time.deltaTime;
-
-        if (timeAfterAttack >= attackRate)
+        if (isAlive)
         {
-            // 누적된 시간 리셋
-            timeAfterAttack = 0f;
+            EnemyFlip();
+        
+            timeAfterAttack += Time.deltaTime;
 
-            anim.SetTrigger("Attack");
+            if (timeAfterAttack >= attackRate)
+            {
+                // 누적된 시간 리셋
+                timeAfterAttack = 0f;
+
+                anim.SetTrigger("Attack");
             
-            Instantiate(bulletPrefab, transform.position, transform.rotation);
+                Instantiate(bulletPrefab, transform.position, transform.rotation);
+            }
         }
     }
 
@@ -62,4 +64,14 @@ public class FlyingEnemy : Enemy
         }
     }
 
+    protected override void Die()
+    {
+        if (enemyHp <= 0)
+        {
+            isAlive = false;
+            anim.SetTrigger("Dead");
+            rb.gravityScale = 2.5f;
+            Destroy(gameObject, 1);
+        }
+    }
 }

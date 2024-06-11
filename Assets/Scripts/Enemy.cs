@@ -6,15 +6,17 @@ using static UnityEditor.PlayerSettings;
 public class Enemy : MonoBehaviour
 {
     public float enemyMaxHp = 100;
-    [SerializeField] float enemyHp;
+    [SerializeField] protected float enemyHp;
     [SerializeField] public float enemyDamage = 1f;
     float starthp;
 
     GameObject player;
     protected Animator anim;
+    protected Rigidbody2D rb;
 
     GameObject hpbar;
     public GameObject monsterHPbar;
+    public bool isAlive = true;
 
     // Start is called before the first frame update
     void Start()
@@ -27,6 +29,7 @@ public class Enemy : MonoBehaviour
     {
         player = GameObject.FindWithTag("Player");        
         anim = GetComponent<Animator>();
+        rb = GetComponent<Rigidbody2D>();
 
         enemyHp = enemyMaxHp;
         hpbar = Instantiate(monsterHPbar, this.transform);
@@ -38,15 +41,9 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     protected virtual void Update()
     {
-
-        if (enemyHp <= 0)
-        {
-            Destroy(gameObject);
-        }
-
         hpbar.transform.localScale = new Vector3(hpbar.transform.localScale.x, starthp * enemyHp / enemyMaxHp);
-
-
+        
+        Die();
     }
 
     public virtual void Hit(float _damage)
@@ -81,6 +78,16 @@ public class Enemy : MonoBehaviour
 
             ctime += Time.deltaTime;
             yield return null;
+        }
+    }
+
+    protected virtual void Die()
+    {
+        if (enemyHp <= 0)
+        {
+            isAlive = false;
+            anim.SetTrigger("Dead");
+            Destroy(gameObject, 1);
         }
     }
 
