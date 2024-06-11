@@ -14,10 +14,8 @@ public class MeleeAttackEnemy : Enemy
     // Start is called before the first frame update
     void Start()
     {
-
         aw = Instantiate(attackWarning, this.transform);
         aw.SetActive(false);
-
     }
 
     // Update is called once per frame
@@ -28,7 +26,7 @@ public class MeleeAttackEnemy : Enemy
         ntime += 1;
 
         // ntime�� �����Ӹ��� ++ 600�����Ӹ��� meleeAttack �ڷ�ƾ ���� 
-        if (ntime % 600 == 0)
+        if (ntime % 600 == 0 && isAlive)
         {
             StartCoroutine(MeeleeAttack());
 
