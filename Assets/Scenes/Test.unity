@@ -219,6 +219,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SkeletonMonster
       objectReference: {fileID: 0}
+    - target: {fileID: 3584718469786653737, guid: 6c8288a951208074e81cd71b2d3ec84f, type: 3}
+      propertyPath: m_Mass
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 6023478690890738867, guid: 6c8288a951208074e81cd71b2d3ec84f, type: 3}
       propertyPath: attackWarning
       value: 

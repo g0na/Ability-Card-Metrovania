@@ -27,7 +27,7 @@ public class MeleeAttackEnemy : Enemy
 
         ntime += 1;
 
-        // ntimeÀº ÇÁ·¹ÀÓ¸¶´Ù ++ 600ÇÁ·¹ÀÓ¸¶´Ù meleeAttack ÄÚ·çÆ¾ ½ÇÇà 
+        // ntimeï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ó¸ï¿½ï¿½ï¿½ ++ 600ï¿½ï¿½ï¿½ï¿½ï¿½Ó¸ï¿½ï¿½ï¿½ meleeAttack ï¿½Ú·ï¿½Æ¾ ï¿½ï¿½ï¿½ï¿½ 
         if (ntime % 600 == 0)
         {
             StartCoroutine(MeeleeAttack());
@@ -45,17 +45,17 @@ public class MeleeAttackEnemy : Enemy
 
     }
 
-    IEnumerator MeeleeAttack() // ÀÛµ¿ÇÏ°í ´À³¦Ç¥, 10ÃÊµÚ¿¡ Attack()ÇÔ¼ö ½ÇÇà 
+    IEnumerator MeeleeAttack() // ï¿½Ûµï¿½ï¿½Ï°ï¿½ ï¿½ï¿½ï¿½ï¿½Ç¥, 10ï¿½ÊµÚ¿ï¿½ Attack()ï¿½Ô¼ï¿½ ï¿½ï¿½ï¿½ï¿½ 
     {
         aw.SetActive(true);
         Debug.Log("meeleeeeeeeeattack! ready!");
-        yield return new WaitForSeconds(0.8f);
+        yield return new WaitForSeconds(1.3f);
         {
             Attack();
         }
     }
 
-    // ¾Ö´Ï¸ÞÀÌ¼Ç º¯°æµÇ¸é¼­ °ø°Ý ÇÏ´Â ºÎºÐ. 
+    // ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½ ï¿½ï¿½ï¿½ï¿½Ç¸é¼­ ï¿½ï¿½ï¿½ï¿½ ï¿½Ï´ï¿½ ï¿½Îºï¿½. 
     public void Attack()
     {
         anim.SetTrigger("Attack");
