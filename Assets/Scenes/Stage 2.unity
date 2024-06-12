@@ -545,6 +545,7 @@ MonoBehaviour:
   startPoint: {fileID: 588877864}
   player: {fileID: 0}
   gameOverWindow: {fileID: 672892293}
+  gameClearWindow: {fileID: 0}
   isPaused: 0
   mapSize: 0
 --- !u!1 &277611387
@@ -1211,7 +1212,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   followSpeed: 0.02
-  offset: {x: 0, y: 0, z: -10}
+  offset: {x: 0, y: 5, z: -10}
 --- !u!1 &550725137
 GameObject:
   m_ObjectHideFlags: 0
@@ -1364,6 +1365,7 @@ MonoBehaviour:
   enemyHp: 50
   enemyDamage: 1
   monsterHPbar: {fileID: 1423558809128552182, guid: fcb4d8cf1b1a2a24f86324a869020c0a, type: 3}
+  isAlive: 1
   bulletPrefab: {fileID: 4928922345016104805, guid: 2f72a5b2cebbf4a4ba24a04f1e3f0430, type: 3}
   attackRate: 2
 --- !u!61 &550725143
@@ -3554,6 +3556,7 @@ MonoBehaviour:
   mainAttack: 0
   ability: 0
   passiveSkill: 0
+  currentStage: 0
 --- !u!4 &1445806735
 Transform:
   m_ObjectHideFlags: 0

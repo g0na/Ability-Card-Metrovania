@@ -174,7 +174,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6075520423837982164}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -250,6 +250,7 @@ MonoBehaviour:
   auraPos: {fileID: 0}
   auraCooltime: 2
   skillCount: 3
+  curSkillCount: 0
   startPoint: {fileID: 0}
   endPoint: {fileID: 0}
 --- !u!114 &6667510376367788799

@@ -1281,6 +1281,7 @@ MonoBehaviour:
   mainAttack: 0
   ability: 0
   passiveSkill: 0
+  currentStage: 0
 --- !u!4 &471437575
 Transform:
   m_ObjectHideFlags: 0
@@ -2046,7 +2047,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 848190592}
         m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
-        m_MethodName: OnClickGoStageButton
+        m_MethodName: OnClickGoStage1Button
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

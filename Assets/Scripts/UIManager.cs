@@ -384,7 +384,9 @@ public class UIManager : MonoBehaviour
     }
     public void OnClickGoStage2Button()
     {
+        Time.timeScale = 1.0f;
         SceneManager.LoadScene("Stage 2");
+        
     }
     public void OnClickGoStage3Button()
     {
