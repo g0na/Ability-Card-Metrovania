@@ -258,11 +258,16 @@ public class CharacterManager : MonoBehaviour
         {
             // TODO: 끝나면 윈도우 띄우기.
             Debug.Log("StageClear!");
+            StartCoroutine(Knockback(1));
             sm.GetComponent<StageManager>().ShowGameClearrWindow();
+            pState.alive = false;
+            rb.velocity = new Vector2 (0, 0);
+            
+
         }
         if (!pState.defending)
         {
-            rb.velocity = new Vector2(walkSpeed * xAxis, rb.velocity.y);
+            rb.velocity = new Vector2(walkSpeed * xAxis, rb.velocity.y + 0.001f);
             anim.SetBool("Walking", rb.velocity.x != 0 && Grounded());
         }
 

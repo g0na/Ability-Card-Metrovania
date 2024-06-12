@@ -39,6 +39,6 @@ public class StageManager : MonoBehaviour
     public void ShowGameClearrWindow()
     {
         gameClearWindow.SetActive(true);
-        Time.timeScale = 0f;
+        // Time.timeScale = 0f;
     }
 }

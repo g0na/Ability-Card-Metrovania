@@ -611,6 +611,7 @@ MonoBehaviour:
   startPoint: {fileID: 588877864}
   player: {fileID: 0}
   gameOverWindow: {fileID: 672892293}
+  gameClearWindow: {fileID: 0}
   isPaused: 0
   mapSize: 0
 --- !u!1 &277611387
@@ -2968,6 +2969,7 @@ MonoBehaviour:
   mainAttack: 0
   ability: 0
   passiveSkill: 0
+  currentStage: 0
 --- !u!4 &1531536885
 Transform:
   m_ObjectHideFlags: 0
@@ -3317,7 +3319,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 234117413342715729, guid: fb9cb92b327e4ca4aa726f6d2a9640a3, type: 3}
       propertyPath: m_CollisionDetection
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1585032444808029501, guid: fb9cb92b327e4ca4aa726f6d2a9640a3, type: 3}
       propertyPath: m_Layer
