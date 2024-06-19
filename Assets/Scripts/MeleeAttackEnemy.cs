@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class MeleeAttackEnemy : Enemy
 {
-
+    private Transform playerPos;
+    private float enemyDir;
     public GameObject attackWarning;
 
     private GameObject aw;
@@ -22,6 +23,8 @@ public class MeleeAttackEnemy : Enemy
     protected override void Update()
     {
         base.Update();
+        
+        EnemyFlip();
 
         ntime += 1;
 
@@ -59,5 +62,20 @@ public class MeleeAttackEnemy : Enemy
         anim.SetTrigger("Attack");
         Debug.Log("ataaaaak!");
         aw.SetActive(false);
+    }
+    
+    private void EnemyFlip()
+    {
+        playerPos = GameObject.Find("Player").GetComponent<Transform>();
+        enemyDir = playerPos.position.x - transform.position.x;
+        
+        if (enemyDir > 0)
+        {
+            transform.localScale = new Vector2(-5, transform.localScale.y);
+        }
+        else if (enemyDir < 0)
+        {
+            transform.localScale = new Vector2(5, transform.localScale.y);
+        }
     }
 }
