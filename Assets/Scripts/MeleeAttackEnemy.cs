@@ -28,7 +28,8 @@ public class MeleeAttackEnemy : Enemy
 
         ntime += 1;
 
-        // ntime�� �����Ӹ��� ++ 600�����Ӹ��� meleeAttack �ڷ�ƾ ���� 
+        // ntime is counter, when it become 
+        // every 600 frames, start coroutine.
         if (ntime % 600 == 0 && isAlive)
         {
             StartCoroutine(MeeleeAttack());
@@ -46,21 +47,21 @@ public class MeleeAttackEnemy : Enemy
 
     }
 
-    IEnumerator MeeleeAttack() // �۵��ϰ� ����ǥ, 10�ʵڿ� Attack()�Լ� ���� 
+    IEnumerator MeeleeAttack() // mark apear when coroutine start, and attack after 1.3f seconds.
     {
         aw.SetActive(true);
-        Debug.Log("meeleeeeeeeeattack! ready!");
+        //Debug.Log("meeleeeeeeeeattack! ready!");
         yield return new WaitForSeconds(1.3f);
         {
             Attack();
         }
     }
 
-    // �ִϸ��̼� ����Ǹ鼭 ���� �ϴ� �κ�. 
+    // this is attack part. 
     public void Attack()
     {
         anim.SetTrigger("Attack");
-        Debug.Log("ataaaaak!");
+        //Debug.Log("ataaaaak!");
         aw.SetActive(false);
     }
     
