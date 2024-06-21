@@ -93,6 +93,19 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -100,10 +113,10 @@ TextureImporter:
       name: Laser_sheet_0
       rect:
         serializedVersion: 2
-        x: 47
-        y: 1363
-        width: 10
-        height: 8
+        x: 0
+        y: 1300
+        width: 300
+        height: 100
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -121,10 +134,10 @@ TextureImporter:
       name: Laser_sheet_1
       rect:
         serializedVersion: 2
-        x: 35
-        y: 1247
-        width: 36
-        height: 39
+        x: 0
+        y: 1200
+        width: 300
+        height: 100
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -142,10 +155,10 @@ TextureImporter:
       name: Laser_sheet_4
       rect:
         serializedVersion: 2
-        x: 35
-        y: 1147
-        width: 36
-        height: 39
+        x: 0
+        y: 900
+        width: 300
+        height: 100
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -163,10 +176,10 @@ TextureImporter:
       name: Laser_sheet_9
       rect:
         serializedVersion: 2
-        x: 35
-        y: 1047
-        width: 36
-        height: 39
+        x: 0
+        y: 400
+        width: 300
+        height: 100
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -181,13 +194,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Laser_sheet_14
+      name: Laser_sheet_2
       rect:
         serializedVersion: 2
-        x: 35
-        y: 946
-        width: 36
-        height: 40
+        x: 0
+        y: 1100
+        width: 300
+        height: 100
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -195,20 +208,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 734b5c5a38a4040d887696305235bf53
-      internalID: -778811131
+      spriteID: 76ee779773ce1654aad969e79f3c2a7d
+      internalID: 1808582408
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Laser_sheet_19
+      name: Laser_sheet_3
       rect:
         serializedVersion: 2
-        x: 36
-        y: 848
-        width: 34
-        height: 36
+        x: 0
+        y: 1000
+        width: 300
+        height: 100
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -216,20 +229,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0495f4941e3ba46e5be304a5a7eb6b4f
-      internalID: -2142098110
+      spriteID: 807bcc4838af8ab45bc51864183b5969
+      internalID: -1756214845
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Laser_sheet_24
+      name: Laser_sheet_5
       rect:
         serializedVersion: 2
-        x: 39
-        y: 750
-        width: 28
-        height: 32
+        x: 0
+        y: 800
+        width: 300
+        height: 100
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -237,20 +250,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b085f308a9af14f0eb72b744909758b2
-      internalID: 615034218
+      spriteID: 98553ccacc23e82479254f017d43c3ec
+      internalID: -1005633751
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Laser_sheet_27
+      name: Laser_sheet_6
       rect:
         serializedVersion: 2
-        x: 40
-        y: 652
-        width: 26
-        height: 29
+        x: 0
+        y: 700
+        width: 300
+        height: 100
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -258,20 +271,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 15912e23f6a9546598a20a301f9f85a6
-      internalID: 314103446
+      spriteID: 8775cec01e8e7f94fb569ccaba98024d
+      internalID: 954472958
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Laser_sheet_29
+      name: Laser_sheet_7
       rect:
         serializedVersion: 2
-        x: 30
-        y: 545
-        width: 270
-        height: 44
+        x: 0
+        y: 600
+        width: 300
+        height: 100
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -279,20 +292,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 523ff32ee510f49129b2599f670c7513
-      internalID: 81560667
+      spriteID: ea9210bfd4ea95647b14eeed9741fcc0
+      internalID: -331262176
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Laser_sheet_30
+      name: Laser_sheet_8
       rect:
         serializedVersion: 2
-        x: 36
-        y: 450
-        width: 264
-        height: 32
+        x: 0
+        y: 500
+        width: 300
+        height: 100
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -300,20 +313,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a165c9fe6cca74edc976dc9fd544f7e0
-      internalID: -570343067
+      spriteID: 5547a93f8c4d2a24dbe0a16730fb426c
+      internalID: 1167809949
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Laser_sheet_31
+      name: Laser_sheet_10
       rect:
         serializedVersion: 2
-        x: 39
-        y: 354
-        width: 261
-        height: 26
+        x: 0
+        y: 300
+        width: 300
+        height: 100
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -321,20 +334,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0133d03b99fdf41b69386df2e3e9f7d6
-      internalID: -1821038343
+      spriteID: 6b84a12e02f237a479c48aa9fb0ac186
+      internalID: -1913475515
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Laser_sheet_32
+      name: Laser_sheet_11
       rect:
         serializedVersion: 2
-        x: 39
-        y: 254
-        width: 261
-        height: 26
+        x: 0
+        y: 200
+        width: 300
+        height: 100
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -342,20 +355,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 495735b1b0e3145fdb4cbb68c9ae2cfd
-      internalID: 188504826
+      spriteID: 6cbba2823f846dd409753b523192f4e4
+      internalID: -932648257
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Laser_sheet_33
+      name: Laser_sheet_12
       rect:
         serializedVersion: 2
-        x: 41
-        y: 155
-        width: 259
-        height: 23
+        x: 0
+        y: 100
+        width: 300
+        height: 100
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -363,20 +376,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3a09e3d5a72b14104adddf32b6e3c7f7
-      internalID: 1745894770
+      spriteID: 95d8160251ff39545baa4a0681e15ffa
+      internalID: 1493823231
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Laser_sheet_34
+      name: Laser_sheet_13
       rect:
         serializedVersion: 2
-        x: 41
-        y: 55
-        width: 259
-        height: 23
+        x: 0
+        y: 0
+        width: 300
+        height: 100
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -384,8 +397,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ac847717fa2524668a7fe579af6d661b
-      internalID: -1194776873
+      spriteID: a2ffd440eb31da54bb3453fa4589604f
+      internalID: 82499203
       vertices: []
       indices: 
       edges: []
@@ -407,29 +420,8 @@ TextureImporter:
       Laser_sheet_11: -932648257
       Laser_sheet_12: 1493823231
       Laser_sheet_13: 82499203
-      Laser_sheet_14: -778811131
-      Laser_sheet_15: -1749901961
-      Laser_sheet_16: -979360160
-      Laser_sheet_17: -1765101584
-      Laser_sheet_18: 485744141
-      Laser_sheet_19: -2142098110
       Laser_sheet_2: 1808582408
-      Laser_sheet_20: 1351145683
-      Laser_sheet_21: -2010269541
-      Laser_sheet_22: -340743321
-      Laser_sheet_23: -838709946
-      Laser_sheet_24: 615034218
-      Laser_sheet_25: -245607323
-      Laser_sheet_26: 1637782575
-      Laser_sheet_27: 314103446
-      Laser_sheet_28: 1641163422
-      Laser_sheet_29: 81560667
       Laser_sheet_3: -1756214845
-      Laser_sheet_30: -570343067
-      Laser_sheet_31: -1821038343
-      Laser_sheet_32: 188504826
-      Laser_sheet_33: 1745894770
-      Laser_sheet_34: -1194776873
       Laser_sheet_4: -400096780
       Laser_sheet_5: -1005633751
       Laser_sheet_6: 954472958
