@@ -12,6 +12,12 @@ public class Boss : MonoBehaviour
     public float bossDamage = 2f;
 
     private Animator anim;
+
+    private int nextPattern = 0;
+    private static int IDLE = 0;
+    private static int STONE = 1;
+    private static int LASER = 2;
+    private static int SUMMON = 3;
     
     // Start is called before the first frame update
     void Start()
@@ -49,4 +55,17 @@ public class Boss : MonoBehaviour
             Destroy(gameObject, 3.5f);
         }
     }
+
+    void Patterns()
+    {
+        switch (nextPattern)
+        {
+
+        }
+    }
+
+    // private IEnumerator Stone()
+    // {
+    //     
+    // }
 }
