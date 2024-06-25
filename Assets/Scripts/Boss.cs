@@ -46,7 +46,7 @@ public class Boss : MonoBehaviour
         {
             //* 체력이 0 이하라 죽음
             anim.SetTrigger("Death");
-            Destroy(gameObject, 2f);
+            Destroy(gameObject, 3.5f);
         }
     }
 }

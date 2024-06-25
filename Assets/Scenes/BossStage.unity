@@ -2990,13 +2990,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3123483775737978833, guid: 8e10f8d11c6a8f6449435e1a67cf027d, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6908393917277830132, guid: 8e10f8d11c6a8f6449435e1a67cf027d, type: 3}
       propertyPath: hpBar
       value: 
       objectReference: {fileID: 624511399}
     - target: {fileID: 6908393917277830132, guid: 8e10f8d11c6a8f6449435e1a67cf027d, type: 3}
       propertyPath: damage
-      value: 1
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 6908393917277830132, guid: 8e10f8d11c6a8f6449435e1a67cf027d, type: 3}
       propertyPath: endPoint
