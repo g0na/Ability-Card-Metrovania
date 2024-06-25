@@ -22,7 +22,6 @@ public class Enemy : MonoBehaviour
     void Start()
     {
         
-       
     }
 
     private void Awake()

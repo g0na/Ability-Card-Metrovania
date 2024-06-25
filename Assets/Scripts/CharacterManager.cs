@@ -174,8 +174,9 @@ public class CharacterManager : MonoBehaviour
         {
             Debug.Log("Hit");
 
-            // 적 공격 부
+            // 적 공격 부 (Normal Enemy)
             _other.GetComponent<Enemy>().Hit(damage);
+            
 
             // 이부분 리코일 따로 빼줄 수 있나?
             float recoilPower = 2f;
@@ -195,17 +196,27 @@ public class CharacterManager : MonoBehaviour
             // Coroutine 시작
             StartCoroutine(MoveOverTime(targetPosition));
         }
+        
+        // Boss
+        if (_other.tag == "Boss")
+        {
+            _other.GetComponent<Boss>().Hit(damage);
+        }
     }
 
 
     // Recoil when Player gets hit with Enemy
     private void OnCollisionStay2D(Collision2D _other)
     {
+        // Hit by normal enemy
         if (_other.gameObject.tag == "Enemy")
         {
-            Debug.Log("Body Hit!");
-
             Hurt(_other.gameObject.GetComponent<Enemy>().enemyDamage, _other.transform.position);
+        }
+        // Hit by Boss
+        else if (_other.gameObject.tag == "Boss")
+        {
+            Hurt(_other.gameObject.GetComponent<Boss>().bossDamage, _other.transform.position);
         }
     }
 
@@ -250,11 +261,11 @@ public class CharacterManager : MonoBehaviour
 
     private void Move()
     {
-        if (this.transform.position.x < startPoint.transform.position.x)
+        if (transform.position.x < startPoint.transform.position.x)
         {
             StartCoroutine(Knockback(-1));
         }
-        if (this.transform.position.x > endPoint.transform.position.x)
+        if (transform.position.x > endPoint.transform.position.x)
         {
             // TODO: 끝나면 윈도우 띄우기.
             Debug.Log("StageClear!");
@@ -570,7 +581,7 @@ public class CharacterManager : MonoBehaviour
 
     private void HandleHp()
     {
-        hpBar.value = (float)curHp / (float)hp;
+        hpBar.value = curHp / hp;
     }
 
     // Recoil Function
