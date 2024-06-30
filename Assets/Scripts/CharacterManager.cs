@@ -214,10 +214,10 @@ public class CharacterManager : MonoBehaviour
             Hurt(_other.gameObject.GetComponent<Enemy>().enemyDamage, _other.transform.position);
         }
         // Hit by Boss
-        else if (_other.gameObject.tag == "Boss")
+        /*else if (_other.gameObject.tag == "Boss")
         {
             Hurt(_other.gameObject.GetComponent<Boss>().bossDamage, _other.transform.position);
-        }
+        }*/
     }
 
     // 서서히 리코일하는 Coroutine
