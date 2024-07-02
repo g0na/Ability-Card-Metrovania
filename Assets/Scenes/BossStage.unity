@@ -165,7 +165,7 @@ GameObject:
   - component: {fileID: 131378995}
   m_Layer: 3
   m_Name: Flatforms
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1699,6 +1699,7 @@ MonoBehaviour:
   maxHealth: 0
   hpSlider: {fileID: 971045527}
   bossDamage: 2
+  stone: {fileID: 2379653305577019018, guid: 797718803e4478f43852ad7d9bfb5811, type: 3}
 --- !u!50 &711111600
 Rigidbody2D:
   serializedVersion: 4
@@ -3769,7 +3770,7 @@ GameObject:
   - component: {fileID: 1910077288}
   m_Layer: 3
   m_Name: Base
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

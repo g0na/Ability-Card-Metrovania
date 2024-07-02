@@ -10,8 +10,11 @@ public class Boss : MonoBehaviour
 
     public Slider hpSlider;
     public float bossDamage = 2f;
-
+    
     private Animator anim;
+    
+    public GameObject stone;
+    private int spawnTimes; 
 
     private int nextPattern = 0;
     private static int IDLE = 0;
@@ -24,6 +27,8 @@ public class Boss : MonoBehaviour
     {
         SetHp(30);
         anim = GetComponent<Animator>();
+        
+        StartCoroutine(Stone());
     }
 
     // Update is called once per frame
@@ -56,16 +61,30 @@ public class Boss : MonoBehaviour
         }
     }
 
-    void Patterns()
+    // void Patterns()
+    // {
+    //     switch (nextPattern)
+    //     {
+    //
+    //     }
+    // }
+    
+    // Stone Pattern
+    void SpawnStone()
     {
-        switch (nextPattern)
+        float xPos = Random.Range(transform.position.x - 20, transform.position.x + 20);
+        Instantiate(stone, new Vector3(xPos, transform.position.y + 15, 0), Quaternion.Euler(0, 0, -90));
+    }
+    
+    private IEnumerator Stone()
+    {
+        anim.SetTrigger("Stone");
+        spawnTimes = 0;
+        while (spawnTimes <= 10)
         {
-
+            SpawnStone();
+            yield return new WaitForSeconds(0.5f);
+            spawnTimes++;
         }
     }
-
-    // private IEnumerator Stone()
-    // {
-    //     
-    // }
 }
