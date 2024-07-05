@@ -74,8 +74,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 931887065
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: -443852066, guid: 86f7be861d79f7945b7251065287ee65, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -176,6 +176,7 @@ MonoBehaviour:
   enemyHp: 10
   enemyDamage: 1
   monsterHPbar: {fileID: 1423558809128552182, guid: fcb4d8cf1b1a2a24f86324a869020c0a, type: 3}
+  isAlive: 1
   patrolWidth: 4
   patrolStep: 0.2
   patrolStepTime: 0.02
