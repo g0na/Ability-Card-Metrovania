@@ -1982,19 +1982,13 @@ MonoBehaviour:
   hpSlider: {fileID: 971045527}
   bossDamage: 2
   stone: {fileID: 2379653305577019018, guid: 797718803e4478f43852ad7d9bfb5811, type: 3}
-<<<<<<< Updated upstream
   laser: {fileID: 1838025597}
   gameClearWindow: {fileID: 1955387594}
-=======
-<<<<<<< HEAD
   mushroom: {fileID: 5745353293993133129, guid: 0babe94b32685f947bc13f50ccab01c1, type: 3}
   skeleton: {fileID: 5568167984234278988, guid: 9a784a15cf136c24aa58e9bc8f2d99ac, type: 3}
   bat: {fileID: 8236077237217011650, guid: 9bc772546059a4cd5be03b2c6dc7e620, type: 3}
-=======
   laser: {fileID: 1838025597}
   gameClearWindow: {fileID: 1955387594}
->>>>>>> 9c39d7a6bef28af59fd6255a126d257f7135a72f
->>>>>>> Stashed changes
 --- !u!50 &711111600
 Rigidbody2D:
   serializedVersion: 4

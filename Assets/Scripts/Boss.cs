@@ -16,30 +16,18 @@ public class Boss : MonoBehaviour
     private Transform playerPos;
     
     public GameObject stone;
-<<<<<<< Updated upstream
+
     private int spawnTimes;
 
     public GameObject laser;
 
     public GameObject gameClearWindow;
-=======
-<<<<<<< HEAD
-    private int spawnTimes; 
     
     // Monsters using summon pattern
     public GameObject mushroom;
     public GameObject skeleton;
     public GameObject bat;
-        
-=======
-    private int spawnTimes;
->>>>>>> Stashed changes
-
-    public GameObject laser;
-
-    public GameObject gameClearWindow;
-
->>>>>>> 9c39d7a6bef28af59fd6255a126d257f7135a72f
+    
     private int nextPattern = 0;
     private static int IDLE = 0;
     private static int STONE = 1;
@@ -54,17 +42,14 @@ public class Boss : MonoBehaviour
         playerPos = GameObject.Find("Player").GetComponent<Transform>();
         
         StartCoroutine(Stone());
-<<<<<<< Updated upstream
-
+        
         laserAttack();
-=======
-<<<<<<< HEAD
+
         StartCoroutine(Summon());
-=======
 
         laserAttack();
->>>>>>> 9c39d7a6bef28af59fd6255a126d257f7135a72f
->>>>>>> Stashed changes
+
+
     }
 
     // Update is called once per frame
@@ -124,10 +109,6 @@ public class Boss : MonoBehaviour
             spawnTimes++;
         }
     }
-<<<<<<< Updated upstream
-=======
-<<<<<<< HEAD
-    
     // Monster Summon Pattern
     void MonsterSummon()
     {
@@ -142,10 +123,7 @@ public class Boss : MonoBehaviour
         anim.SetTrigger("Summon");
         MonsterSummon();
         yield return new WaitForSeconds(1f);
-=======
->>>>>>> Stashed changes
-
-
+    }
 
     public void laserAttack()
     {
@@ -159,9 +137,5 @@ public class Boss : MonoBehaviour
     {
         Debug.Log("?");
         gameClearWindow.SetActive(true);
-<<<<<<< Updated upstream
-=======
->>>>>>> 9c39d7a6bef28af59fd6255a126d257f7135a72f
->>>>>>> Stashed changes
     }
 }
