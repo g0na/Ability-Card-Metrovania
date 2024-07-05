@@ -14,7 +14,11 @@ public class Boss : MonoBehaviour
     private Animator anim;
     
     public GameObject stone;
-    private int spawnTimes; 
+    private int spawnTimes;
+
+    public GameObject laser;
+
+    public GameObject gameClearWindow;
 
     private int nextPattern = 0;
     private static int IDLE = 0;
@@ -29,6 +33,8 @@ public class Boss : MonoBehaviour
         anim = GetComponent<Animator>();
         
         StartCoroutine(Stone());
+
+        laserAttack();
     }
 
     // Update is called once per frame
@@ -58,6 +64,7 @@ public class Boss : MonoBehaviour
             //* 체력이 0 이하라 죽음
             anim.SetTrigger("Death");
             Destroy(gameObject, 3.5f);
+            Invoke("ShowGameClearWindow", 3.5f);
         }
     }
 
@@ -86,5 +93,21 @@ public class Boss : MonoBehaviour
             yield return new WaitForSeconds(0.5f);
             spawnTimes++;
         }
+    }
+
+
+
+    public void laserAttack()
+    {
+        laser.SetActive(true);
+        laser.transform.localPosition = new Vector3(0, 0, 0);
+        laser.transform.rotation = Quaternion.Euler(0, 0, 0);
+
+    }
+
+    public void ShowGameClearWindow()
+    {
+        Debug.Log("?");
+        gameClearWindow.SetActive(true);
     }
 }

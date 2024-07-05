@@ -12,11 +12,16 @@ public class MeleeAttackEnemy : Enemy
 
     private int ntime;
 
+
+
     // Start is called before the first frame update
     void Start()
     {
         aw = Instantiate(attackWarning, this.transform);
         aw.SetActive(false);
+
+
+        
     }
 
     // Update is called once per frame
@@ -55,6 +60,8 @@ public class MeleeAttackEnemy : Enemy
         {
             Attack();
         }
+
+
     }
 
     // this is attack part. 
@@ -79,4 +86,6 @@ public class MeleeAttackEnemy : Enemy
             transform.localScale = new Vector2(5, transform.localScale.y);
         }
     }
+
+
 }
