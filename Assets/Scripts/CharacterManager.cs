@@ -269,10 +269,11 @@ public class CharacterManager : MonoBehaviour
         {
             // TODO: 끝나면 윈도우 띄우기.
             Debug.Log("StageClear!");
-            StartCoroutine(Knockback(1));
             sm.GetComponent<StageManager>().ShowGameClearrWindow();
+            StartCoroutine(Knockback(1));           
             pState.alive = false;
             rb.velocity = new Vector2 (0, 0);
+            xAxis = 0;
             
 
         }

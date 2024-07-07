@@ -79,7 +79,8 @@ public class Boss : MonoBehaviour
             //* 체력이 0 이하라 죽음
             anim.SetTrigger("Death");
             Destroy(gameObject, 3.5f);
-            Invoke("ShowGameClearWindow", 3.5f);
+            StartCoroutine(showClearWindowAfterSeconds(3f));
+            laser.GetComponent<Laser>().damage = 0;
         }
     }
 
@@ -135,7 +136,17 @@ public class Boss : MonoBehaviour
 
     public void ShowGameClearWindow()
     {
-        Debug.Log("?");
         gameClearWindow.SetActive(true);
     }
+
+    IEnumerator showClearWindowAfterSeconds(float s)
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(s);
+            ShowGameClearWindow();
+        }        
+    }
+
+
 }

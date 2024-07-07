@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Laser : MonoBehaviour
 {
+
+    public float damage = 30f;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,7 +19,14 @@ public class Laser : MonoBehaviour
     {
 
     }
-
+    private void OnTriggerEnter2D(Collider2D _other)
+    {
+        if (_other.CompareTag("Player"))
+        {
+            _other.GetComponent<CharacterManager>().Hurt(damage, transform.position);
+            Debug.Log("character hit");
+        }
+    }
     IEnumerator LaserAttack()
     {
         // 45
