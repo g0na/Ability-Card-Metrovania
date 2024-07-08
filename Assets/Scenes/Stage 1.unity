@@ -3944,6 +3944,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   followSpeed: 0.02
   offset: {x: 0, y: 5, z: -10}
+  isBossStage: 0
 --- !u!1 &523599689
 GameObject:
   m_ObjectHideFlags: 0
@@ -12213,6 +12214,10 @@ PrefabInstance:
       propertyPath: startPoint
       value: 
       objectReference: {fileID: 588877864}
+    - target: {fileID: 8005507003590736977, guid: 8e10f8d11c6a8f6449435e1a67cf027d, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8012054454261603033, guid: 8e10f8d11c6a8f6449435e1a67cf027d, type: 3}
       propertyPath: m_Name
       value: Player
