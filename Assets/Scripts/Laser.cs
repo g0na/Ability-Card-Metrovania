@@ -11,7 +11,6 @@ public class Laser : MonoBehaviour
     {
         
         //this.transform.rotation = Quaternion.identity;
-        StartCoroutine(LaserAttack());
     }
 
     // Update is called once per frame
@@ -19,6 +18,13 @@ public class Laser : MonoBehaviour
     {
 
     }
+    
+
+    public void StartLaserAttack()
+    {
+        StartCoroutine(LaserAttack());
+    }
+
     private void OnTriggerEnter2D(Collider2D _other)
     {
         if (_other.CompareTag("Player"))

@@ -164,6 +164,7 @@ public class Boss : MonoBehaviour
         laser.SetActive(true);
         laser.transform.localPosition = new Vector3(0, 0, 0);
         laser.transform.rotation = Quaternion.Euler(0, 0, 0);
+        laser.GetComponent<Laser>().StartLaserAttack();
         anim.SetTrigger("Idle");
     }
 
