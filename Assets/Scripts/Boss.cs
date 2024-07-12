@@ -88,6 +88,7 @@ public class Boss : MonoBehaviour
         while (curHealth > 0)
         {
             nextPattern = Random.Range(0, 4);
+
             switch (nextPattern)
             {
                 case (0):
@@ -103,8 +104,7 @@ public class Boss : MonoBehaviour
                     StartCoroutine(Summon());
                     break;
             }
-
-            yield return new WaitForSeconds(7f);
+            yield return new WaitForSeconds(5f);
         }
     }
     
@@ -118,11 +118,12 @@ public class Boss : MonoBehaviour
     private IEnumerator Stone()
     {
         anim.SetTrigger("Stone");
+        yield return new WaitForSeconds(1.1f);
         spawnTimes = 0;
-        while (spawnTimes <= 10)
+        while (spawnTimes < 10)
         {
             SpawnStone();
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(0.3f);
             spawnTimes++;
         }
     }
@@ -131,6 +132,7 @@ public class Boss : MonoBehaviour
     private IEnumerator Summon()
     {
         anim.SetTrigger("Summon");
+        yield return new WaitForSeconds(1.2f);
         MushroomSummon();
         yield return new WaitForSeconds(0.5f);
         SkeletonSummon();
@@ -142,19 +144,19 @@ public class Boss : MonoBehaviour
     {
         float xPos = Random.Range(playerPos.position.x - 10, playerPos.position.x + 10);
         tempBat = Instantiate(bat, new Vector3(xPos, playerPos.position.y + 10, 0), Quaternion.identity);
-        Destroy(tempBat, 5f);
+        Destroy(tempBat, 8f);
     }
 
     void MushroomSummon()
     {
-        tempMushroom = Instantiate(mushroom, new Vector3(-31.24268f, -7.682882f, 0), Quaternion.identity);
-        Destroy(tempMushroom, 5f);
+        tempMushroom = Instantiate(mushroom, new Vector3(-26f, -7.682882f, 0), Quaternion.identity);
+        Destroy(tempMushroom, 8f);
     }
 
     void SkeletonSummon()
     {
         tempSkeleton = Instantiate(skeleton, new Vector3(17.65732f, -13.98288f, 0), Quaternion.identity);
-        Destroy(tempSkeleton, 5f);
+        Destroy(tempSkeleton, 8f);
     }
     
     public void laserAttack()
@@ -162,6 +164,7 @@ public class Boss : MonoBehaviour
         laser.SetActive(true);
         laser.transform.localPosition = new Vector3(0, 0, 0);
         laser.transform.rotation = Quaternion.Euler(0, 0, 0);
+        anim.SetTrigger("Idle");
     }
 
     public void ShowGameClearWindow()
