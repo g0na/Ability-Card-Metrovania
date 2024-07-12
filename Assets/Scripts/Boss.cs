@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -25,8 +26,11 @@ public class Boss : MonoBehaviour
     
     // Monsters using summon pattern
     public GameObject mushroom;
+    private GameObject tempMushroom;
     public GameObject skeleton;
+    private GameObject tempSkeleton;
     public GameObject bat;
+    private GameObject tempBat;
     
     private int nextPattern = 0;
     private static int IDLE = 0;
@@ -41,14 +45,8 @@ public class Boss : MonoBehaviour
         anim = GetComponent<Animator>();
         playerPos = GameObject.Find("Player").GetComponent<Transform>();
         
-        StartCoroutine(Stone());
+        StartCoroutine(Patterns());
         
-        laserAttack();
-
-        StartCoroutine(Summon());
-
-        laserAttack();
-
 
     }
 
@@ -76,6 +74,7 @@ public class Boss : MonoBehaviour
         CheckHp();
         if (curHealth <= 0)
         {
+            StopCoroutine("Patterns");
             //* 체력이 0 이하라 죽음
             anim.SetTrigger("Death");
             Destroy(gameObject, 3.5f);
@@ -84,13 +83,30 @@ public class Boss : MonoBehaviour
         }
     }
 
-    // void Patterns()
-    // {
-    //     switch (nextPattern)
-    //     {
-    //
-    //     }
-    // }
+    private IEnumerator Patterns()
+    {
+        while (curHealth > 0)
+        {
+            nextPattern = Random.Range(0, 4);
+            switch (nextPattern)
+            {
+                case (0):
+                    anim.SetTrigger("Idle");
+                    break;
+                case (1):
+                    StartCoroutine(Stone());
+                    break;
+                case (2):
+                    laserAttack();
+                    break;
+                case (3):
+                    StartCoroutine(Summon());
+                    break;
+            }
+
+            yield return new WaitForSeconds(7f);
+        }
+    }
     
     // Stone Pattern
     void SpawnStone()
@@ -110,28 +126,42 @@ public class Boss : MonoBehaviour
             spawnTimes++;
         }
     }
+    
     // Monster Summon Pattern
-    void MonsterSummon()
-    {
-        float xPos = Random.Range(playerPos.position.x - 10, playerPos.position.x + 10);
-        Instantiate(mushroom, new Vector3(xPos, playerPos.position.y, 0), Quaternion.identity);
-        Instantiate(skeleton, new Vector3(xPos, playerPos.position.y, 0), Quaternion.identity);
-        Instantiate(bat, new Vector3(xPos, playerPos.position.y, 0), Quaternion.identity);
-    }
-
     private IEnumerator Summon()
     {
         anim.SetTrigger("Summon");
-        MonsterSummon();
-        yield return new WaitForSeconds(1f);
+        MushroomSummon();
+        yield return new WaitForSeconds(0.5f);
+        SkeletonSummon();
+        yield return new WaitForSeconds(0.5f);
+        BatSummon();
+    }
+    
+    void BatSummon()
+    {
+        float xPos = Random.Range(playerPos.position.x - 10, playerPos.position.x + 10);
+        tempBat = Instantiate(bat, new Vector3(xPos, playerPos.position.y + 10, 0), Quaternion.identity);
+        Destroy(tempBat, 5f);
     }
 
+    void MushroomSummon()
+    {
+        tempMushroom = Instantiate(mushroom, new Vector3(-31.24268f, -7.682882f, 0), Quaternion.identity);
+        Destroy(tempMushroom, 5f);
+    }
+
+    void SkeletonSummon()
+    {
+        tempSkeleton = Instantiate(skeleton, new Vector3(17.65732f, -13.98288f, 0), Quaternion.identity);
+        Destroy(tempSkeleton, 5f);
+    }
+    
     public void laserAttack()
     {
         laser.SetActive(true);
         laser.transform.localPosition = new Vector3(0, 0, 0);
         laser.transform.rotation = Quaternion.Euler(0, 0, 0);
-
     }
 
     public void ShowGameClearWindow()
