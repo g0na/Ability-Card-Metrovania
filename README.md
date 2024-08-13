@@ -6,7 +6,7 @@
 
 개발 기간 : 24.05.10 ~ 24.07.12
 
-조작키 : 이동 - WASD 또는 방향키, 점프 - Space, 구르기 - Left-Shift, 공격 - Left-Mouse-Button
+조작키 : 이동 - WASD 또는 방향키, 점프 - Space, 구르기 - Left-Shift, 공격 - Left-Mouse-Button, 막기 - C
 
 플레이 방법 : 메인 메뉴의 "Card Management"를 클릭하여 사용할 능력 카드들을 선택하고 "Start"를 클릭하여 플레이
 
